@@ -93,6 +93,10 @@ export const HomePagePoster: React.FC<HomePagePosterProps> = ({
             <p className="text-base text-slate-600 leading-relaxed max-w-3xl">
               Equipping engineers with governing principles, technical standards (SS 553, BCA Green Mark, ASHRAE), and design methods for sizing ducts, chilled water pipes, refrigeration plants, cooling load estimation, and building thermal envelopes (ETTV).
             </p>
+            <div className="bg-amber-50 border border-amber-200 rounded-xl px-4 py-3 text-sm text-slate-700 leading-relaxed max-w-3xl">
+              <span className="font-bold text-amber-900">In plain words:</span>{' '}
+              This course is about keeping buildings cool without wasting energy — how air-con and ventilation systems work, how to size the pipes and ducts that carry the cooling, and the Singapore rules (SS 553, BCA Green Mark) buildings must follow. Each week: notes → a worked example → a tool to try.
+            </div>
           </div>
 
           {/* Lecturer & Class Info Bar */}
@@ -146,6 +150,34 @@ export const HomePagePoster: React.FC<HomePagePosterProps> = ({
           </div>
         </header>
 
+        {/* Plain-English Quick Guide */}
+        <section className="bg-white rounded-2xl p-5 sm:p-6 border border-slate-200 shadow-sm">
+          <div className="flex flex-wrap items-center gap-2 mb-3">
+            <BookOpen className="w-4 h-4 text-[#C8102E]" />
+            <h2 className="text-sm font-bold text-slate-900 uppercase tracking-wider">
+              Plain-English Quick Guide
+            </h2>
+            <span className="text-xs text-slate-500">(no jargon panic — what the abbreviations mean)</span>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">
+            {[
+              ["SS 553", "Singapore's official rules for air-con & ventilation in buildings"],
+              ['ETTV', 'How much heat the building lets in — limit: ≤ 50 W/m²'],
+              ['U-value', 'How fast heat passes through a wall or window (lower = better insulation)'],
+              ['WWR', 'How much of a wall is glass (windows)'],
+              ['RT / kW·RT', 'Unit of cooling power · how efficient a chiller is (lower = better)'],
+              ['CF · SC', 'Sun-direction & shading factors for glass (how much sun gets in)'],
+              ['Psychrometrics', 'The science of air moisture & temperature'],
+              ['Le/D', 'A simple way to count pipe bend & fitting losses'],
+            ].map(([term, plain]) => (
+              <div key={term} className="bg-slate-50 border border-slate-200/80 rounded-xl px-3 py-2.5">
+                <div className="font-bold text-[#C8102E] text-xs">{term}</div>
+                <div className="text-[11px] text-slate-600 leading-snug mt-0.5">{plain}</div>
+              </div>
+            ))}
+          </div>
+        </section>
+
         {/* Current Status Banner (Today: Tue 3 Nov 2026 -> Next lesson: Week 3 Thu 5 Nov 2026) */}
         <section className="bg-gradient-to-r from-rose-900 via-rose-950 to-slate-950 text-white rounded-2xl p-5 sm:p-6 shadow-md flex flex-col sm:flex-row sm:items-center justify-between gap-4 border border-rose-800/40">
           <div className="space-y-1.5">
@@ -170,7 +202,7 @@ export const HomePagePoster: React.FC<HomePagePosterProps> = ({
               <span>•</span>
               <span>6:00 PM – 10:00 PM</span>
               <span>•</span>
-              <span className="font-mono text-amber-300 font-bold">{currentWeek.keyFormulaOrCode}</span>
+              <span className="font-semibold text-amber-200">{currentWeek.plainTitle || currentWeek.keyFormulaOrCode}</span>
             </div>
           </div>
 
@@ -230,9 +262,6 @@ export const HomePagePoster: React.FC<HomePagePosterProps> = ({
                       <div className="w-16 h-16 sm:w-20 sm:h-20 shrink-0 rounded-xl bg-slate-50 border border-slate-200 flex flex-col items-center justify-center text-center p-1 shadow-2xs">
                         {getWeekIcon(week.title)}
                         <span className="text-[11px] font-bold text-slate-800 mt-1">Week {week.weekNumber}</span>
-                        <span className="text-[9px] font-mono text-slate-500 leading-tight truncate max-w-[68px]">
-                          {week.keyFormulaOrCode}
-                        </span>
                       </div>
 
                       {/* Main Title & Description */}
@@ -263,9 +292,13 @@ export const HomePagePoster: React.FC<HomePagePosterProps> = ({
                           )}
                         </div>
 
-                        <h3 className="text-base sm:text-lg font-bold text-slate-900 flex items-center gap-2">
-                          {week.title}
+                        <h3 className="text-base sm:text-lg font-bold text-slate-900">
+                          {week.plainTitle || week.title}
                         </h3>
+
+                        <div className="text-[11px] font-semibold text-slate-500 uppercase tracking-wide mt-0.5">
+                          {week.title}
+                        </div>
 
                         <p className="text-xs sm:text-sm text-slate-600 line-clamp-2 max-w-2xl leading-relaxed">
                           {week.summary}
@@ -302,6 +335,18 @@ export const HomePagePoster: React.FC<HomePagePosterProps> = ({
                   {/* Expanded in-place section */}
                   {isExpanded && (
                     <div className="px-5 pb-6 pt-2 border-t border-slate-100 bg-slate-50/50 space-y-6">
+                      {/* Key Formula Chip */}
+                      {week.keyFormulaOrCode && (
+                        <div className="flex flex-wrap items-center gap-2">
+                          <span className="text-xs font-bold uppercase tracking-wider text-slate-700">
+                            Key formula this week:
+                          </span>
+                          <span className="font-mono text-xs font-bold text-amber-800 bg-amber-100/70 border border-amber-200 px-2.5 py-1 rounded-lg">
+                            {week.keyFormulaOrCode}
+                          </span>
+                        </div>
+                      )}
+
                       {/* Key Technical Concepts */}
                       {week.keyConcepts.length > 0 && (
                         <div className="space-y-2">

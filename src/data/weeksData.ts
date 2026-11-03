@@ -21,6 +21,7 @@ export interface WeekData {
   iconType: 'refrigeration' | 'equipment' | 'duct' | 'chiller' | 'pipe' | 'test' | 'recess' | 'design' | 'ettv' | 'load' | 'psychrometric';
   keyFormulaOrCode: string;
   title: string;
+  plainTitle?: string; // plain-English headline shown first on the week card
   summary: string;
   keyConcepts: string[];
   tutorialQuestions: WeekTutorialQuestion[];
@@ -40,6 +41,7 @@ export const WEEKS_DATA: WeekData[] = [
     iconType: 'refrigeration',
     keyFormulaOrCode: '1 RT = 3.517 kW',
     title: 'Types of Air-conditioning Systems',
+    plainTitle: 'The big picture: the different ways buildings are cooled',
     summary: 'Direct expansion (DX) vs central chilled water systems, CAV vs VAV, FCU, Thermal Energy Storage (TES), and Singapore District Cooling (SDC).',
     keyConcepts: [
       'Cold is the absence of heat; cooling extracts energy from indoor air and rejects it to the ambient outdoors.',
@@ -99,6 +101,7 @@ export const WEEKS_DATA: WeekData[] = [
     iconType: 'design',
     keyFormulaOrCode: 'SS 553: 23–25°C · RH ≤ 65%',
     title: 'Air Systems, Indoor and Outdoor Design Conditions',
+    plainTitle: 'Room comfort targets: Singapore\'s rules for temperature, humidity & fresh air',
     summary: 'Singapore SS 553 statutory thermal comfort criteria, outdoor design conditions (33.5°C DB / 27.5°C WB), outdoor fresh air ventilation rates, and sensible/latent heat split.',
     keyConcepts: [
       'Singapore SS 553 indoor comfort standards: 23°C to 25°C Dry Bulb, Relative Humidity ≤ 65%, air movement ≤ 0.30 m/s.',
@@ -136,6 +139,7 @@ export const WEEKS_DATA: WeekData[] = [
     iconType: 'ettv',
     keyFormulaOrCode: 'U = 1/RT · ETTV ≤ 50 W/m²',
     title: 'Envelope Thermal Performance',
+    plainTitle: 'Why walls & windows let heat in — and how we measure it',
     summary: 'Building envelope heat gain, multilayer wall thermal resistance, air spaces, surface films, overall thermal transmittance U-value, WWR, and BCA Green Mark ETTV compliance.',
     keyConcepts: [
       'Total thermal resistance: RT = Ro + R1 + R2 + ... + Rn + Ri (where R = thickness x / thermal conductivity k).',
@@ -175,6 +179,7 @@ export const WEEKS_DATA: WeekData[] = [
     iconType: 'load',
     keyFormulaOrCode: 'Qs = 1.2 · V · ΔT · Qt = Qs + Ql',
     title: 'Cooling Load Estimation',
+    plainTitle: 'Adding it up: how much cooling a room really needs',
     summary: 'External solar transmission, internal heat gains (occupancy, lighting power density W/m², office equipment), infiltration, outdoor air ventilation cooling loads, and sensible heat ratio (SHR).',
     keyConcepts: [
       'Sensible heat gains (Qs) increase space temperature without moisture change: occupants, lighting, equipment, wall/window conduction, solar radiation.',
@@ -213,6 +218,7 @@ export const WEEKS_DATA: WeekData[] = [
     iconType: 'chiller',
     keyFormulaOrCode: 'kW/m³s ≤ 349 (CHWP) · 301 (CWP)',
     title: 'Practical 1 (IFM lab)',
+    plainTitle: 'Hands-on lab: testing a real chiller plant',
     summary: 'Hands-on laboratory testing of water-cooled chiller plant, pump hydraulic power, overall plant efficiency, and statutory verification against Singapore SS 553 Clause 10.7.',
     keyConcepts: [
       'Chiller cooling capacity: Q (kW) = m_chw × Cw × (tchwr - tchws), where Cw = 4.2 kJ/kgK.',
@@ -253,6 +259,7 @@ export const WEEKS_DATA: WeekData[] = [
     iconType: 'psychrometric',
     keyFormulaOrCode: 'Tm = (mo·To + mr·Tr)/(mo + mr)',
     title: 'System Psychrometrics',
+    plainTitle: 'Air & moisture: mixing air, and squeezing water out of it',
     summary: 'Psychrometric properties of moist air, specific enthalpy, humidity ratio, adiabatic mixing of outdoor air with recirculated room air, coil sensible cooling and dehumidification.',
     keyConcepts: [
       'Adiabatic air mixing lies along the straight line connecting state points O (outdoor) and R (room return).',
@@ -291,6 +298,7 @@ export const WEEKS_DATA: WeekData[] = [
     iconType: 'test',
     keyFormulaOrCode: '20% Module Weightage · Closed Book',
     title: 'Common Test',
+    plainTitle: 'Test time: Common Test (Weeks 1–6)',
     summary: 'Mid-semester assessment evaluating Weeks 1 to 6: Thermodynamics, AC Systems, SS 553 Standards, Envelope ETTV, Cooling Load, and Psychrometric processes.',
     keyConcepts: [
       'Covers Lessons 1, 2, 9, 10, 12, 13, and Practical 1.',
@@ -312,6 +320,7 @@ export const WEEKS_DATA: WeekData[] = [
     iconType: 'psychrometric',
     keyFormulaOrCode: 'Qt = m·Δh · Qs = 1.012·m·ΔT',
     title: 'System Psychrometrics',
+    plainTitle: 'Deeper dive: VAV & fan coil systems on the moisture chart',
     summary: 'Detailed psychrometric analysis of Variable Air Volume (VAV) and Fan Coil Unit (FCU) systems, partial load psychrometric tracking, bypass factor, and reheat dynamics.',
     keyConcepts: [
       'VAV systems modulate supply air flow rate while keeping supply air temperature constant (typically 13°C).',
@@ -349,6 +358,7 @@ export const WEEKS_DATA: WeekData[] = [
     iconType: 'duct',
     keyFormulaOrCode: 'ΔP/L = 0.8–1.0 Pa/m · Huebscher De',
     title: 'Duct Systems & Sizing / Retest',
+    plainTitle: 'Sizing the air pipes: ducts (plus Common Test retest)',
     summary: 'Air distribution systems, supply registers, Coanda effect, throw and drop, Equal Friction duct sizing method, Huebscher circular equivalent equation, and Common Test retest.',
     keyConcepts: [
       'The Equal Friction method sizes duct networks for a constant pressure drop per unit length (0.8 to 1.0 Pa/m).',
@@ -404,6 +414,7 @@ export const WEEKS_DATA: WeekData[] = [
     iconType: 'duct',
     keyFormulaOrCode: 'ΔPfitting = Σ C · Pv · Pv = 0.60·V²',
     title: 'Duct Systems & Sizing',
+    plainTitle: 'Sizing the air pipes, part 2: pressure losses & the fan',
     summary: 'Index run hydraulic resistance, dynamic fitting losses, velocity pressure, fan static pressure calculation, safety factors, and ceiling void depth constraints (300 mm max).',
     keyConcepts: [
       'The Index Run is the hydraulically most resistant circuit from the fan discharge to the most remote diffuser.',
@@ -445,6 +456,7 @@ export const WEEKS_DATA: WeekData[] = [
     iconType: 'equipment',
     keyFormulaOrCode: 'Computer-Aided Duct & Energy Sim',
     title: 'Practicals 2 & 3',
+    plainTitle: 'Hands-on: computer labs for duct networks & energy simulation',
     summary: 'Software-based ductwork network pressure calculation, fan static sizing, and energy performance modeling in computer laboratory.',
     keyConcepts: [
       'Lecturers: David Teo / Gan Poh Tin.',
@@ -466,6 +478,7 @@ export const WEEKS_DATA: WeekData[] = [
     iconType: 'pipe',
     keyFormulaOrCode: 'Le = (Le/D) · D · H = ΔP/(ρ·g)',
     title: 'Pipe Systems & Sizing',
+    plainTitle: 'Sizing the water pipes: chilled water & condenser water',
     summary: 'Hydronic chilled water and condenser water networks, flow velocity limits (0.6–2.4 m/s), Darcy-Weisbach friction, equivalent length Le/D method for fittings and valves.',
     keyConcepts: [
       'Velocity limits in steel pipe: 0.6 m/s minimum (prevent sediment accumulation), 1.2 to 2.4 m/s maximum (prevent erosion and water hammer noise).',
@@ -505,6 +518,7 @@ export const WEEKS_DATA: WeekData[] = [
     iconType: 'pipe',
     keyFormulaOrCode: 'Schedule 40 Friction · ΔP ≤ 250 Pa/m',
     title: 'Pipe Systems & Sizing / Air-conditioning Equipment',
+    plainTitle: 'Water pipes continued — then into the machine room',
     summary: 'Balancing valves, 2-way modulating control valves, secondary pumping headers, pump head calculation, and transition to refrigeration equipment components.',
     keyConcepts: [
       'Primary/secondary hydronic decoupling with bridge header isolates chiller constant flow from variable building load.',
@@ -545,6 +559,7 @@ export const WEEKS_DATA: WeekData[] = [
     iconType: 'equipment',
     keyFormulaOrCode: 'Approach = Tleaving - Tsat ≤ 2.0°C',
     title: 'Air-conditioning Equipment',
+    plainTitle: 'Inside the machine: compressors, condensers & evaporators',
     summary: 'Compressors (Reciprocating, Centrifugal with Magnetic Bearings, Screw, Scroll), metering devices (TXV, EEV), shell & tube condensers/evaporators, automatic tube cleaning, Legionella control protocols.',
     keyConcepts: [
       'Compressor classification: Reciprocating (5–500 kW), Centrifugal (450 kW–20 MW), Screw (450–1500 kW), Scroll (5–50 kW).',
@@ -584,6 +599,7 @@ export const WEEKS_DATA: WeekData[] = [
     iconType: 'test',
     keyFormulaOrCode: '20% Module Weightage · WTEST',
     title: 'Test 2',
+    plainTitle: 'Test time: Written Test 2 (whole semester)',
     summary: 'Final comprehensive written examination covering the entire semester curriculum (SS 553, Envelope ETTV, Cooling Load, Psychrometrics, Duct Sizing, and Pipe Sizing).',
     keyConcepts: [
       'Comprehensive final written test covering all 14 weeks of study.',
