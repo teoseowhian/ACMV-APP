@@ -43,7 +43,7 @@ export const TIMETABLE_DATA: TimetableEntry[] = [
     topic: 'Types of Air-conditioning Systems',
     lecturer: 'David Teo',
     notes: 'Introduction to DX vs Chilled Water systems, CAV/VAV, FCU, Singapore District Cooling (Marina Bay & Keppel DHCS), Thermal Energy Storage (TES).',
-    pdfPath: '/assets/aistudio/Lesson_1_Air-conditional_System_Part1_Apr26_44a6b178.pdf',
+    pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Lesson_1_Air-conditional_System_Part1_Apr26_44a6b178.pdf`,
   },
   {
     lessonNumber: 2,
@@ -54,7 +54,7 @@ export const TIMETABLE_DATA: TimetableEntry[] = [
     topic: 'Air Systems, Indoor and Outdoor Design Conditions',
     lecturer: 'David Teo',
     notes: 'Singapore SS 553 statutory thermal comfort criteria, outdoor design conditions (33.5°C DB / 27.5°C WB), outdoor fresh air ventilation rates.',
-    pdfPath: '/assets/aistudio/Lesson_9_Design_Apr_26_ce5bf399.pdf',
+    pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Lesson_9_Design_Apr_26_ce5bf399.pdf`,
   },
   {
     lessonNumber: 3,
@@ -65,7 +65,7 @@ export const TIMETABLE_DATA: TimetableEntry[] = [
     topic: 'Envelope Thermal Performance',
     lecturer: 'David Teo',
     notes: 'Building envelope heat gain, multilayer wall thermal resistance, air spaces, surface films, overall U-value, WWR, and BCA Green Mark ETTV compliance.',
-    pdfPath: '/assets/aistudio/Lesson_10_Envelope_Thermal_Performance_Apr_26_d6fba43d.pdf',
+    pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Lesson_10_Envelope_Thermal_Performance_Apr_26_d6fba43d.pdf`,
   },
   {
     lessonNumber: 4,
@@ -76,7 +76,7 @@ export const TIMETABLE_DATA: TimetableEntry[] = [
     topic: 'Cooling Load Estimation',
     lecturer: 'David Teo',
     notes: 'External solar transmission, internal heat gains (occupants, lighting density W/m², office equipment), infiltration, outdoor air ventilation cooling loads.',
-    pdfPath: '/assets/aistudio/Lesson_12_Cooling_Load_Estimation_Apr_26_fac925dc.pdf',
+    pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Lesson_12_Cooling_Load_Estimation_Apr_26_fac925dc.pdf`,
   },
   {
     lessonNumber: 5,
@@ -87,7 +87,7 @@ export const TIMETABLE_DATA: TimetableEntry[] = [
     topic: 'Practical 1 (IFM lab)',
     lecturer: 'David Teo / Gan Poh Tin',
     notes: 'Hands-on laboratory testing of water-cooled chiller plant, pump hydraulic power, overall plant efficiency, and SS 553 statutory verification.',
-    pdfPath: '/assets/aistudio/Lesson_5_ACMV_P1_Chiller_Apr_26_6d04ba2c.pdf',
+    pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Lesson_5_ACMV_P1_Chiller_Apr_26_6d04ba2c.pdf`,
   },
   {
     lessonNumber: 6,
@@ -98,7 +98,7 @@ export const TIMETABLE_DATA: TimetableEntry[] = [
     topic: 'System Psychrometrics',
     lecturer: 'David Teo',
     notes: 'Psychrometric properties of moist air, specific enthalpy, humidity ratio, adiabatic mixing of outdoor air with recirculated room air, coil sensible cooling and dehumidification.',
-    pdfPath: '/assets/aistudio/Lesson_13___14_Psychrometics_Apr_26_3d552ceb.pdf',
+    pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Lesson_13___14_Psychrometics_Apr_26_3d552ceb.pdf`,
   },
   {
     lessonNumber: 7,
@@ -119,7 +119,7 @@ export const TIMETABLE_DATA: TimetableEntry[] = [
     topic: 'System Psychrometrics',
     lecturer: 'David Teo',
     notes: 'Detailed psychrometric analysis of Variable Air Volume (VAV) and Fan Coil Unit (FCU) systems, partial load psychrometric tracking, bypass factor, and reheat dynamics.',
-    pdfPath: '/assets/aistudio/Lesson_13___14_Psychrometics_Apr_26_3d552ceb.pdf',
+    pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Lesson_13___14_Psychrometics_Apr_26_3d552ceb.pdf`,
   },
   {
     lessonNumber: 9,
@@ -130,7 +130,7 @@ export const TIMETABLE_DATA: TimetableEntry[] = [
     topic: 'Duct Systems & Sizing / Retest',
     lecturer: 'David Teo',
     notes: 'Air distribution systems, supply registers, Coanda effect, throw and drop, Equal Friction duct sizing method, Huebscher circular equivalent equation, and Common Test retest.',
-    pdfPath: '/assets/aistudio/Lesson_3_Duct_Systems_Apr_26_450c1ce7.pdf',
+    pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Lesson_3_Duct_Systems_Apr_26_450c1ce7.pdf`,
   },
   {
     lessonNumber: 0,
@@ -152,7 +152,7 @@ export const TIMETABLE_DATA: TimetableEntry[] = [
     topic: 'Duct Systems & Sizing',
     lecturer: 'David Teo',
     notes: 'Index run hydraulic resistance, dynamic fitting losses, velocity pressure, fan static pressure calculation, safety factors, and ceiling void depth constraints (300 mm max).',
-    pdfPath: '/assets/aistudio/Lesson_4_Duct_Systems_Apr_26__2___1__450c1ce7.pdf',
+    pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Lesson_4_Duct_Systems_Apr_26__2___1__450c1ce7.pdf`,
   },
   {
     lessonNumber: 11,
@@ -173,7 +173,7 @@ export const TIMETABLE_DATA: TimetableEntry[] = [
     topic: 'Pipe Systems & Sizing',
     lecturer: 'David Teo',
     notes: 'Hydronic chilled water and condenser water networks, flow velocity limits (0.6–2.4 m/s), Darcy-Weisbach friction, equivalent length Le/D method for fittings and valves.',
-    pdfPath: '/assets/aistudio/Lesson_6_Pipe_Sizing_Apr_26_813731d3.pdf',
+    pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Lesson_6_Pipe_Sizing_Apr_26_813731d3.pdf`,
   },
   {
     lessonNumber: 13,
@@ -184,7 +184,7 @@ export const TIMETABLE_DATA: TimetableEntry[] = [
     topic: 'Pipe Systems & Sizing / Air-conditioning Equipment',
     lecturer: 'David Teo',
     notes: 'Balancing valves, 2-way modulating control valves, secondary pumping headers, pump head calculation, and transition to refrigeration equipment components.',
-    pdfPath: '/assets/aistudio/Lesson_6_Pipe_Sizing_Apr_26__1__813731d3.pdf',
+    pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Lesson_6_Pipe_Sizing_Apr_26__1__813731d3.pdf`,
   },
   {
     lessonNumber: 14,
@@ -195,7 +195,7 @@ export const TIMETABLE_DATA: TimetableEntry[] = [
     topic: 'Air-conditioning Equipment',
     lecturer: 'David Teo',
     notes: 'Compressors (Reciprocating, Centrifugal with Magnetic Bearings, Screw, Scroll), metering devices (TXV, EEV), shell & tube condensers/evaporators, automatic tube cleaning, Legionella control protocols.',
-    pdfPath: '/assets/aistudio/Lesson_2_Equipment_Apr_26_30dcd678.pdf',
+    pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Lesson_2_Equipment_Apr_26_30dcd678.pdf`,
   },
   {
     lessonNumber: 15,

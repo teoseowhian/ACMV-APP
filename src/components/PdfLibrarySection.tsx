@@ -73,7 +73,7 @@ export const PdfLibrarySection: React.FC<PdfLibrarySectionProps> = ({ onOpenPdf 
       {/* PDF Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {filteredPdfs.map((pdf, idx) => {
-          const fullPath = `/assets/aistudio/${pdf.fileName}`;
+          const fullPath = `${import.meta.env.BASE_URL}assets/aistudio/${pdf.fileName}`;
 
           return (
             <div
