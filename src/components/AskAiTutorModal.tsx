@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { X, Sparkles, Send, HelpCircle, ChevronRight, Eye, RefreshCw } from 'lucide-react';
-import { GoogleGenAI } from '@google/genai';
 
 interface AskAiTutorModalProps {
   isOpen: boolean;
@@ -65,39 +64,24 @@ export const AskAiTutorModal: React.FC<AskAiTutorModalProps> = ({
     setLoading(true);
 
     try {
-      // Check if user has client-accessible GEMINI_API_KEY or use fallback
-      const apiKey =
-        (typeof process !== 'undefined' && process.env?.GEMINI_API_KEY) ||
-        (import.meta as any).env?.VITE_GEMINI_API_KEY;
-
-      if (apiKey && apiKey !== 'MY_GEMINI_API_KEY') {
-        const ai = new GoogleGenAI({ apiKey });
-        const response = await ai.models.generateContent({
-          model: 'gemini-2.5-flash',
-          contents: [
-            {
-              role: 'user',
-              parts: [
-                {
-                  text: `You are an expert Socratic engineering tutor for Singapore Ngee Ann Polytechnic's course "Air-Conditioning & Mechanical Ventilation" (Lecturer David Teo).
-Course Scope:
-- SS 553 Singapore ACMV standard (23-25°C, RH <=65%, air speed 0.15-0.3m/s, pump limits 349/301 kW/(m³/s)).
-- Singapore BCA Green Mark (water-cooled chiller <= 0.58 kW/RT, ETTV <= 50 W/m²).
-- Lessons 1-15: Refrigeration cycle, equipment (split/VRF/chiller), equal friction duct sizing (0.8-1.0 Pa/m, max 7.5 m/s), chilled water pipe sizing (100-400 Pa/m, Le/D method), cooling load estimation, psychrometrics (ADP, contact factor, mixing).
-
-CRITICAL PEDAGOGY:
-1. DO NOT give away the final calculation answer immediately.
-2. Provide a Socratic Hint with 2 guiding questions, the key formula without numbers, and advice on which values to identify from the tutorial question.
-3. At the very end, include the token "---FULL_SOLUTION---" followed by the complete worked numerical solution.
-
-Question: ${q}`,
-                },
-              ],
-            },
-          ],
+      // Ask the server to call Gemini, so the API key never reaches the browser.
+      // On a static host (GitHub Pages) there is no server, and the built-in hints below are used.
+      let fullText = '';
+      try {
+        const res = await fetch(`${import.meta.env.BASE_URL}api/tutor`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ question: q }),
         });
+        if (res.ok) {
+          const data = await res.json();
+          fullText = typeof data?.text === 'string' ? data.text : '';
+        }
+      } catch {
+        fullText = '';
+      }
 
-        const fullText = response.text || '';
+      if (fullText) {
         const parts = fullText.split('---FULL_SOLUTION---');
         const hintPart = parts[0]?.trim() || fullText;
         const answerPart = parts[1]?.trim() || '';
