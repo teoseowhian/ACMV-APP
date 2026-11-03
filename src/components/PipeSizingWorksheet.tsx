@@ -291,7 +291,7 @@ export const PipeSizingWorksheet: React.FC<PipeSizingWorksheetProps> = ({ onOpen
             <button
               onClick={() =>
                 onOpenPdf(
-                  '/assets/aistudio/Friction_Loss_for_Water_in_Commercial_Steel_Pipe_Schedule_40_4e619142.pdf'
+                  `${import.meta.env.BASE_URL}assets/aistudio/Friction_Loss_for_Water_in_Commercial_Steel_Pipe_Schedule_40_4e619142.pdf`
                 )
               }
               className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg transition-colors whitespace-nowrap"

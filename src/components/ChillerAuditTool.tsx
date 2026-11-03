@@ -113,7 +113,7 @@ export const ChillerAuditTool: React.FC<ChillerAuditToolProps> = ({ onOpenPdf })
 
           <div className="flex items-center gap-2">
             <button
-              onClick={() => onOpenPdf('/assets/aistudio/Lesson_5_ACMV_P1_Chiller_Apr_26_6d04ba2c.pdf')}
+              onClick={() => onOpenPdf(`${import.meta.env.BASE_URL}assets/aistudio/Lesson_5_ACMV_P1_Chiller_Apr_26_6d04ba2c.pdf`)}
               className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg transition-colors whitespace-nowrap"
             >
               <FileText className="w-3.5 h-3.5" />

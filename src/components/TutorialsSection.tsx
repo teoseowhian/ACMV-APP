@@ -20,10 +20,10 @@ export const TutorialsSection: React.FC<TutorialsSectionProps> = ({ onOpenPdf })
     TUTORIAL_SOLUTIONS.find((s) => s.id === activeSolutionId) || filteredSolutions[0];
 
   const tutorialPdfMap: Record<string, string> = {
-    'AMVS 1': '/assets/aistudio/Tutorial_1_Apr_26_c1496a6f.pdf',
-    'AMVS 2': '/assets/aistudio/Tutorial_2_Apr_26_1b03e097.pdf',
-    'AMVS 3': '/assets/aistudio/Tutorial_3_Apr_26__1__57c7fbf4.pdf',
-    'AMVS 4': '/assets/aistudio/Tutorial_4_Apr_26_79ce2872.pdf',
+    'AMVS 1': `${import.meta.env.BASE_URL}assets/aistudio/Tutorial_1_Apr_26_c1496a6f.pdf`,
+    'AMVS 2': `${import.meta.env.BASE_URL}assets/aistudio/Tutorial_2_Apr_26_1b03e097.pdf`,
+    'AMVS 3': `${import.meta.env.BASE_URL}assets/aistudio/Tutorial_3_Apr_26__1__57c7fbf4.pdf`,
+    'AMVS 4': `${import.meta.env.BASE_URL}assets/aistudio/Tutorial_4_Apr_26_79ce2872.pdf`,
   };
 
   return (

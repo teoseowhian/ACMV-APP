@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: acmv-app
+    runtime: node
+    repo: https://github.com/teoseowhian/ACMV-APP
+    plan: free
+    buildCommand: npm install --legacy-peer-deps --include=dev && npm run build
+    startCommand: NODE_ENV=production node --import tsx server.ts
+    healthCheckPath: /
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false
