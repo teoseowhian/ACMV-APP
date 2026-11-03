@@ -1,0 +1,8 @@
+{
+  "name": "ACMV Masterclass",
+  "description": "Interactive learning laboratory and simulation platform for Air-Conditioning & Mechanical Ventilation (ACMV) engineering, chilled water systems, psychrometrics, and energy efficiency.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
