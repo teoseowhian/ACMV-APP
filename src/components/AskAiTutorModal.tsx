@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { X, Sparkles, Send, HelpCircle, ChevronRight, Eye, RefreshCw } from 'lucide-react';
-import { GoogleGenAI } from '@google/genai';
 
 interface AskAiTutorModalProps {
   isOpen: boolean;
@@ -65,39 +64,19 @@ export const AskAiTutorModal: React.FC<AskAiTutorModalProps> = ({
     setLoading(true);
 
     try {
-      // Check if user has client-accessible GEMINI_API_KEY or use fallback
-      const apiKey =
-        (typeof process !== 'undefined' && process.env?.GEMINI_API_KEY) ||
-        (import.meta as any).env?.VITE_GEMINI_API_KEY;
+      // Server-side AI tutor (secure: API key stays on the server)
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          message: q,
+          history: messages.slice(-6).map((m) => ({ role: m.role, content: m.content })),
+        }),
+      });
+      const data = await response.json();
 
-      if (apiKey && apiKey !== 'MY_GEMINI_API_KEY') {
-        const ai = new GoogleGenAI({ apiKey });
-        const response = await ai.models.generateContent({
-          model: 'gemini-2.5-flash',
-          contents: [
-            {
-              role: 'user',
-              parts: [
-                {
-                  text: `You are an expert Socratic engineering tutor for Singapore Ngee Ann Polytechnic's course "Air-Conditioning & Mechanical Ventilation" (Lecturer David Teo).
-Course Scope:
-- SS 553 Singapore ACMV standard (23-25°C, RH <=65%, air speed 0.15-0.3m/s, pump limits 349/301 kW/(m³/s)).
-- Singapore BCA Green Mark (water-cooled chiller <= 0.58 kW/RT, ETTV <= 50 W/m²).
-- Lessons 1-15: Refrigeration cycle, equipment (split/VRF/chiller), equal friction duct sizing (0.8-1.0 Pa/m, max 7.5 m/s), chilled water pipe sizing (100-400 Pa/m, Le/D method), cooling load estimation, psychrometrics (ADP, contact factor, mixing).
-
-CRITICAL PEDAGOGY:
-1. DO NOT give away the final calculation answer immediately.
-2. Provide a Socratic Hint with 2 guiding questions, the key formula without numbers, and advice on which values to identify from the tutorial question.
-3. At the very end, include the token "---FULL_SOLUTION---" followed by the complete worked numerical solution.
-
-Question: ${q}`,
-                },
-              ],
-            },
-          ],
-        });
-
-        const fullText = response.text || '';
+      if (data.reply) {
+        const fullText: string = data.reply || '';
         const parts = fullText.split('---FULL_SOLUTION---');
         const hintPart = parts[0]?.trim() || fullText;
         const answerPart = parts[1]?.trim() || '';
@@ -112,46 +91,38 @@ Question: ${q}`,
             ...(answerPart ? { fullAnswer: answerPart } as any : {}),
           },
         ]);
-      } else {
-        // Fallback intelligent offline knowledge match
-        const lower = q.toLowerCase();
-        let matched = KNOWLEDGE_BASE_HINTS['ss553'];
-
-        if (lower.includes('chiller') || lower.includes('cop') || lower.includes('kw/rt')) {
-          matched = KNOWLEDGE_BASE_HINTS['chiller'];
-        } else if (lower.includes('duct') || lower.includes('air') || lower.includes('friction') || lower.includes('velocity')) {
-          matched = KNOWLEDGE_BASE_HINTS['duct'];
-        } else if (lower.includes('pipe') || lower.includes('le/d') || lower.includes('pump') || lower.includes('head')) {
-          matched = KNOWLEDGE_BASE_HINTS['pipe'];
-        } else if (lower.includes('ettv') || lower.includes('u-value') || lower.includes('facade') || lower.includes('wwr')) {
-          matched = KNOWLEDGE_BASE_HINTS['ettv'];
-        }
-
-        setTimeout(() => {
-          setMessages((prev) => [
-            ...prev,
-            {
-              role: 'assistant',
-              content: matched.hint,
-              hint: matched.hint,
-              fullAnswer: matched.answer,
-              showFullAnswer: false,
-            } as any,
-          ]);
-          setLoading(false);
-        }, 500);
-        return;
       }
     } catch (err) {
-      console.error(err);
-      setMessages((prev) => [
-        ...prev,
-        {
-          role: 'assistant',
-          content:
-            "Here is a Socratic hint: Review the governing equations in your lecture notes. Identify your knowns (mass flow rate m, temperature difference ΔT, specific heat Cp) and unknowns. What equation connects them?",
-        },
-      ]);
+      console.error('AI tutor server unreachable, using offline knowledge base:', err);
+
+      // Offline fallback knowledge match (works on static hosting like GitHub Pages)
+      const lower = q.toLowerCase();
+      let matched = KNOWLEDGE_BASE_HINTS['ss553'];
+
+      if (lower.includes('chiller') || lower.includes('cop') || lower.includes('kw/rt')) {
+        matched = KNOWLEDGE_BASE_HINTS['chiller'];
+      } else if (lower.includes('duct') || lower.includes('air') || lower.includes('friction') || lower.includes('velocity')) {
+        matched = KNOWLEDGE_BASE_HINTS['duct'];
+      } else if (lower.includes('pipe') || lower.includes('le/d') || lower.includes('pump') || lower.includes('head')) {
+        matched = KNOWLEDGE_BASE_HINTS['pipe'];
+      } else if (lower.includes('ettv') || lower.includes('u-value') || lower.includes('facade') || lower.includes('wwr')) {
+        matched = KNOWLEDGE_BASE_HINTS['ettv'];
+      }
+
+      setTimeout(() => {
+        setMessages((prev) => [
+          ...prev,
+          {
+            role: 'assistant',
+            content: matched.hint,
+            hint: matched.hint,
+            fullAnswer: matched.answer,
+            showFullAnswer: false,
+          } as any,
+        ]);
+        setLoading(false);
+      }, 500);
+      return;
     } finally {
       setLoading(false);
     }
