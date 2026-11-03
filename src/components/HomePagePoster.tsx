@@ -91,7 +91,7 @@ export const HomePagePoster: React.FC<HomePagePosterProps> = ({
               Air-Conditioning & Mechanical Ventilation
             </h1>
             <p className="text-base text-slate-600 leading-relaxed max-w-3xl">
-              Equipping engineers with governing principles, technical standards (SS 553, BCA Green Mark, ASHRAE), and design methods for sizing ducts, chilled water pipes, refrigeration plants, cooling load estimation, and building thermal envelopes (ETTV).
+              Learn how buildings are kept cool and well ventilated: how much cooling a room needs, how the air is treated, and how to size the ducts, pipes and plant that deliver it. Follows Singapore's SS 553 and BCA Green Mark.
             </p>
           </div>
 
@@ -186,10 +186,14 @@ export const HomePagePoster: React.FC<HomePagePosterProps> = ({
         <section className="space-y-4">
           <div className="flex items-center justify-between px-1">
             <h2 className="text-lg font-bold text-slate-900 uppercase tracking-wider flex items-center gap-2">
-              <Calendar className="w-5 h-5 text-[#C8102E]" /> 15-Week Oct26 Semester Curriculum
+              <Calendar className="w-5 h-5 text-[#C8102E]" /> Week-by-week lesson plan
             </h2>
-            <span className="text-xs text-slate-500 font-medium">Click any week to inspect questions & resources</span>
+            <span className="text-xs text-slate-500 font-medium">Tap a week to see the slides, tutorial and worked answers</span>
           </div>
+          <p className="px-1 text-sm text-slate-600">
+            Each week: <strong>1.</strong> read the slides, <strong>2.</strong> try the tutorial questions,{' '}
+            <strong>3.</strong> check the worked answers, <strong>4.</strong> practise in the lab.
+          </p>
 
           <div className="space-y-3">
             {WEEKS_DATA.map((week) => {
@@ -306,7 +310,7 @@ export const HomePagePoster: React.FC<HomePagePosterProps> = ({
                       {week.keyConcepts.length > 0 && (
                         <div className="space-y-2">
                           <h4 className="text-xs font-bold uppercase tracking-wider text-slate-700 flex items-center gap-1.5">
-                            <CheckCircle2 className="w-4 h-4 text-[#C8102E]" /> Key Technical Concepts
+                            <CheckCircle2 className="w-4 h-4 text-[#C8102E]" /> Key ideas to remember
                           </h4>
                           <ul className="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs text-slate-600 bg-white p-4 rounded-xl border border-slate-200/80">
                             {week.keyConcepts.map((kc, idx) => (
@@ -323,7 +327,7 @@ export const HomePagePoster: React.FC<HomePagePosterProps> = ({
                       {week.tutorialQuestions.length > 0 && (
                         <div className="space-y-3">
                           <h4 className="text-xs font-bold uppercase tracking-wider text-slate-700 flex items-center gap-1.5">
-                            <HelpCircle className="w-4 h-4 text-slate-500" /> Tutorial Questions & Worked Solutions
+                            <HelpCircle className="w-4 h-4 text-slate-500" /> Try these questions (answers shown step by step)
                           </h4>
                           <div className="space-y-3">
                             {week.tutorialQuestions.map((tq) => (
@@ -359,7 +363,7 @@ export const HomePagePoster: React.FC<HomePagePosterProps> = ({
                       {week.resources.length > 0 && (
                         <div className="space-y-2">
                           <h4 className="text-xs font-bold uppercase tracking-wider text-slate-700 flex items-center gap-1.5">
-                            <FileText className="w-4 h-4 text-slate-500" /> Module Resources & Official PDFs
+                            <FileText className="w-4 h-4 text-slate-500" /> Slides & handouts for this week
                           </h4>
                           <div className="flex flex-wrap gap-2">
                             {week.resources.map((res, rIdx) => (

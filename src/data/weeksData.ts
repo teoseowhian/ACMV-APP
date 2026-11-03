@@ -40,7 +40,7 @@ export const WEEKS_DATA: WeekData[] = [
     iconType: 'refrigeration',
     keyFormulaOrCode: '1 RT = 3.517 kW',
     title: 'Types of Air-conditioning Systems',
-    summary: 'Direct expansion (DX) vs central chilled water systems, CAV vs VAV, FCU, Thermal Energy Storage (TES), and Singapore District Cooling (SDC).',
+    summary: 'How buildings are cooled. You compare split units (DX) with central chilled-water plants, and see how Singapore uses district cooling and ice/chilled-water storage to save energy.',
     keyConcepts: [
       'Cold is the absence of heat; cooling extracts energy from indoor air and rejects it to the ambient outdoors.',
       'Sensible heat alters dry-bulb temperature; latent heat condenses airborne moisture at constant temperature.',
@@ -51,7 +51,7 @@ export const WEEKS_DATA: WeekData[] = [
     ],
     tutorialQuestions: [
       {
-        questionNumber: 'AMVS 1 · Q1',
+        questionNumber: 'Tutorial 1 · Q1',
         prompt: 'Explain the main difference between a DX (Direct Expansion) and a chilled water system.',
         solutionSteps: [
           'In a DX system, refrigerant evaporates directly inside the cooling coil located in the room or AHU, directly cooling the indoor air.',
@@ -60,7 +60,7 @@ export const WEEKS_DATA: WeekData[] = [
         finalAnswer: 'DX circulates refrigerant directly into room evaporator coils; Chilled Water uses water as a secondary heat transfer fluid pumped from a central plant.',
       },
       {
-        questionNumber: 'AMVS 1 · Q4(c)',
+        questionNumber: 'Tutorial 1 · Q4(c)',
         prompt: 'The rated cooling capacity of a split unit is 18,000 Btu/h. What is its rating in RT?',
         solutionSteps: [
           'Conversion formula: 1 RT = 12,000 Btu/h.',
@@ -69,7 +69,7 @@ export const WEEKS_DATA: WeekData[] = [
         finalAnswer: '1.50 RT (or 5.27 kW)',
       },
       {
-        questionNumber: 'AMVS 1 · Q5',
+        questionNumber: 'Tutorial 1 · Q5',
         prompt: 'A water-cooled chiller consumes 480 kWe when providing a cooling capacity of 3600 kWr. What is its efficiency in terms of kWe/RT and COP?',
         solutionSteps: [
           'Cooling capacity in RT = 3600 kW / 3.517 = 1,023.6 RT.',
@@ -81,10 +81,10 @@ export const WEEKS_DATA: WeekData[] = [
       },
     ],
     resources: [
-      { label: 'Lesson 1 Module Introduction (PDF)', pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Lesson_1_Module_Introduction_Apr26_1c9b0222.pdf`, isAvailable: true, type: 'lecture' },
-      { label: 'Lesson 1 AC System Part 1 (PDF)', pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Lesson_1_Air-conditional_System_Part1_Apr26_44a6b178.pdf`, isAvailable: true, type: 'lecture' },
-      { label: 'Lesson 2 AC System Part 2 (PDF)', pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Lesson_2_Air-Conditioning_Syste__Part_2_Apr_26_0c5cb21b.pdf`, isAvailable: true, type: 'lecture' },
-      { label: 'Tutorial AMVS 1 Problem Sheet (PDF)', pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Tutorial_1_Apr_26_c1496a6f.pdf`, isAvailable: true, type: 'tutorial' },
+      { label: 'Module introduction & timetable (Lesson 1 file)', pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Lesson_1_Module_Introduction_Apr26_1c9b0222.pdf`, isAvailable: true, type: 'lecture' },
+      { label: 'Slides: AC systems, part 1 (Lesson 1 file)', pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Lesson_1_Air-conditional_System_Part1_Apr26_44a6b178.pdf`, isAvailable: true, type: 'lecture' },
+      { label: 'Slides: AC systems, part 2 (Lesson 2 file)', pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Lesson_2_Air-Conditioning_Syste__Part_2_Apr_26_0c5cb21b.pdf`, isAvailable: true, type: 'lecture' },
+      { label: 'Tutorial 1 questions (AMVS 1)', pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Tutorial_1_Apr_26_c1496a6f.pdf`, isAvailable: true, type: 'tutorial' },
     ],
     labTabId: 'refrigeration',
   },
@@ -99,7 +99,7 @@ export const WEEKS_DATA: WeekData[] = [
     iconType: 'design',
     keyFormulaOrCode: 'SS 553: 23–25°C · RH ≤ 65%',
     title: 'Air Systems, Indoor and Outdoor Design Conditions',
-    summary: 'Singapore SS 553 statutory thermal comfort criteria, outdoor design conditions (33.5°C DB / 27.5°C WB), outdoor fresh air ventilation rates, and sensible/latent heat split.',
+    summary: 'What "comfortable" means indoors (temperature, humidity, fresh air) and what outdoor weather in Singapore we design against. These numbers are the starting point for every design that follows.',
     keyConcepts: [
       'Singapore SS 553 indoor comfort standards: 23°C to 25°C Dry Bulb, Relative Humidity ≤ 65%, air movement ≤ 0.30 m/s.',
       'Singapore outdoor design condition: 33.5°C Dry Bulb, 27.5°C Wet Bulb (coincident with peak solar irradiation).',
@@ -109,7 +109,7 @@ export const WEEKS_DATA: WeekData[] = [
     ],
     tutorialQuestions: [
       {
-        questionNumber: 'Lesson 9 · Review Q1',
+        questionNumber: 'Review question',
         prompt: 'State the recommended indoor design conditions specified under Singapore Standard SS 553:2016 for commercial offices.',
         solutionSteps: [
           '1. Dry Bulb Temperature: 23°C to 25°C (target 24°C).',
@@ -120,8 +120,8 @@ export const WEEKS_DATA: WeekData[] = [
       },
     ],
     resources: [
-      { label: 'Lesson 9 Design Lecture Slides (PDF)', pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Lesson_9_Design_Apr_26_ce5bf399.pdf`, isAvailable: true, type: 'lecture' },
-      { label: 'Psychrometric Chart (PDF)', pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Psychrometric_chart_1dc90027.pdf`, isAvailable: true, type: 'reference' },
+      { label: 'Slides: design conditions (Lesson 9 file)', pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Lesson_9_Design_Apr_26_ce5bf399.pdf`, isAvailable: true, type: 'lecture' },
+      { label: 'Psychrometric chart', pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Psychrometric_chart_1dc90027.pdf`, isAvailable: true, type: 'reference' },
     ],
     labTabId: 'psychrometrics',
   },
@@ -136,7 +136,7 @@ export const WEEKS_DATA: WeekData[] = [
     iconType: 'ettv',
     keyFormulaOrCode: 'U = 1/RT · ETTV ≤ 50 W/m²',
     title: 'Envelope Thermal Performance',
-    summary: 'Building envelope heat gain, multilayer wall thermal resistance, air spaces, surface films, overall thermal transmittance U-value, WWR, and BCA Green Mark ETTV compliance.',
+    summary: 'How heat gets into a building through its walls and windows. You work out a wall\'s U-value and check a facade against the ETTV limit.',
     keyConcepts: [
       'Total thermal resistance: RT = Ro + R1 + R2 + ... + Rn + Ri (where R = thickness x / thermal conductivity k).',
       'Thermal transmittance (U-value): Uw = 1 / RT (W/m²K). Lower U-value signifies superior insulation.',
@@ -146,7 +146,7 @@ export const WEEKS_DATA: WeekData[] = [
     ],
     tutorialQuestions: [
       {
-        questionNumber: 'Lesson 10 · Worked Ex 1',
+        questionNumber: 'Worked example',
         prompt: 'Calculate the overall thermal transmittance (U-value) for an exterior wall: 15mm granite (k=2.927), 100mm lightweight concrete (k=0.346), 20mm air space (R=0.148), 20mm gypsum plasterboard (k=0.170). Outside film Ro = 0.044, inside film Ri = 0.120 m²K/W.',
         solutionSteps: [
           'R_granite = 0.015 / 2.927 = 0.0051 m²K/W.',
@@ -160,7 +160,7 @@ export const WEEKS_DATA: WeekData[] = [
       },
     ],
     resources: [
-      { label: 'Lesson 10 Envelope Thermal Performance (PDF)', pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Lesson_10_Envelope_Thermal_Performance_Apr_26_d6fba43d.pdf`, isAvailable: true, type: 'lecture' },
+      { label: 'Slides: envelope thermal performance (Lesson 10 file)', pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Lesson_10_Envelope_Thermal_Performance_Apr_26_d6fba43d.pdf`, isAvailable: true, type: 'lecture' },
     ],
     labTabId: 'ettv',
   },
@@ -175,7 +175,7 @@ export const WEEKS_DATA: WeekData[] = [
     iconType: 'load',
     keyFormulaOrCode: 'Qs = 1.2 · V · ΔT · Qt = Qs + Ql',
     title: 'Cooling Load Estimation',
-    summary: 'External solar transmission, internal heat gains (occupancy, lighting power density W/m², office equipment), infiltration, outdoor air ventilation cooling loads, and sensible heat ratio (SHR).',
+    summary: 'Adding up all the heat a room gains (sun, people, lights, equipment, outside air) to find how much cooling it needs.',
     keyConcepts: [
       'Sensible heat gains (Qs) increase space temperature without moisture change: occupants, lighting, equipment, wall/window conduction, solar radiation.',
       'Latent heat gains (Ql) increase space humidity from occupants perspiration/respiration and outdoor air moisture.',
@@ -185,7 +185,7 @@ export const WEEKS_DATA: WeekData[] = [
     ],
     tutorialQuestions: [
       {
-        questionNumber: 'Lesson 12 · Load Check',
+        questionNumber: 'Worked example',
         prompt: 'An office has 20 occupants, each releasing 75 W sensible and 55 W latent heat. Lighting is 1,200 W and computers release 2,400 W. Calculate space sensible, latent, and total heat gain in kW and SHR.',
         solutionSteps: [
           'Occupant sensible = 20 × 75 = 1,500 W.',
@@ -198,7 +198,7 @@ export const WEEKS_DATA: WeekData[] = [
       },
     ],
     resources: [
-      { label: 'Lesson 12 Cooling Load Estimation (PDF)', pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Lesson_12_Cooling_Load_Estimation_Apr_26_fac925dc.pdf`, isAvailable: true, type: 'lecture' },
+      { label: 'Slides: cooling load estimation (Lesson 12 file)', pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Lesson_12_Cooling_Load_Estimation_Apr_26_fac925dc.pdf`, isAvailable: true, type: 'lecture' },
     ],
     labTabId: 'cooling-load',
   },
@@ -213,7 +213,7 @@ export const WEEKS_DATA: WeekData[] = [
     iconType: 'chiller',
     keyFormulaOrCode: 'kW/m³s ≤ 349 (CHWP) · 301 (CWP)',
     title: 'Practical 1 (IFM lab)',
-    summary: 'Hands-on laboratory testing of water-cooled chiller plant, pump hydraulic power, overall plant efficiency, and statutory verification against Singapore SS 553 Clause 10.7.',
+    summary: 'Hands-on lab: measure how well a real water-cooled chiller and its pumps perform, and compare the results with the SS 553 limits.',
     keyConcepts: [
       'Chiller cooling capacity: Q (kW) = m_chw × Cw × (tchwr - tchws), where Cw = 4.2 kJ/kgK.',
       'Pump hydraulic output power: P_out (kW) = [Flow (L/s) × ΔP (kPa)] / 1000.',
@@ -223,7 +223,7 @@ export const WEEKS_DATA: WeekData[] = [
     ],
     tutorialQuestions: [
       {
-        questionNumber: 'AMVS 2 · Q8',
+        questionNumber: 'Tutorial 2 · Q8',
         prompt: 'Calculate chiller cooling capacity, kW/RT, and approach: V_chw = 128 L/s (8°C to 13°C), V_cw = 125 L/s (29°C to 35°C), Power = 462 kW, Saturated Condensing = 36.8°C, Saturated Evaporating = 6.5°C.',
         solutionSteps: [
           'Cooling capacity Q_chw = 128 × 4.2 × (13 - 8) = 2,688 kW.',
@@ -236,8 +236,8 @@ export const WEEKS_DATA: WeekData[] = [
       },
     ],
     resources: [
-      { label: 'Lesson 5 ACMV P1 Chiller Practical Slides (PDF)', pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Lesson_5_ACMV_P1_Chiller_Apr_26_6d04ba2c.pdf`, isAvailable: true, type: 'lecture' },
-      { label: 'Tutorial AMVS 2 Problem Sheet (PDF)', pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Tutorial_2_Apr_26_1b03e097.pdf`, isAvailable: true, type: 'tutorial' },
+      { label: 'Practical 1 instruction sheet: chiller & pumps', pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Lesson_5_ACMV_P1_Chiller_Apr_26_6d04ba2c.pdf`, isAvailable: true, type: 'lecture' },
+      { label: 'Tutorial 2 questions (AMVS 2)', pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Tutorial_2_Apr_26_1b03e097.pdf`, isAvailable: true, type: 'tutorial' },
     ],
     labTabId: 'chiller',
     isSpecial: 'practical',
@@ -253,7 +253,7 @@ export const WEEKS_DATA: WeekData[] = [
     iconType: 'psychrometric',
     keyFormulaOrCode: 'Tm = (mo·To + mr·Tr)/(mo + mr)',
     title: 'System Psychrometrics',
-    summary: 'Psychrometric properties of moist air, specific enthalpy, humidity ratio, adiabatic mixing of outdoor air with recirculated room air, coil sensible cooling and dehumidification.',
+    summary: 'Reading the psychrometric chart: what happens to air when it is mixed, cooled and dried by a cooling coil.',
     keyConcepts: [
       'Adiabatic air mixing lies along the straight line connecting state points O (outdoor) and R (room return).',
       'Mixed air dry bulb: Tm = (mo·To + mr·Tr) / (mo + mr); Mixed humidity ratio: wm = (mo·wo + mr·wr) / (mo + mr).',
@@ -263,7 +263,7 @@ export const WEEKS_DATA: WeekData[] = [
     ],
     tutorialQuestions: [
       {
-        questionNumber: 'Lessons 13 & 14 · Ex 5.1',
+        questionNumber: 'Worked example (slides Ex 5.1)',
         prompt: '1,000 L/s of outdoor air at 33°C DB, 60% RH mixes with 4,000 L/s of room air at 24°C DB, 50% RH. Calculate the mixed air dry bulb temperature.',
         solutionSteps: [
           'Total air volume = 1,000 + 4,000 = 5,000 L/s.',
@@ -275,8 +275,8 @@ export const WEEKS_DATA: WeekData[] = [
       },
     ],
     resources: [
-      { label: 'Lessons 13 & 14 Psychrometrics Slides (PDF)', pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Lesson_13___14_Psychrometics_Apr_26_3d552ceb.pdf`, isAvailable: true, type: 'lecture' },
-      { label: 'Psychrometric Chart (PDF)', pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Psychrometric_chart_1dc90027.pdf`, isAvailable: true, type: 'reference' },
+      { label: 'Slides: psychrometrics (Lessons 13 & 14 file)', pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Lesson_13___14_Psychrometics_Apr_26_3d552ceb.pdf`, isAvailable: true, type: 'lecture' },
+      { label: 'Psychrometric chart', pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Psychrometric_chart_1dc90027.pdf`, isAvailable: true, type: 'reference' },
     ],
     labTabId: 'psychrometrics',
   },
@@ -291,7 +291,7 @@ export const WEEKS_DATA: WeekData[] = [
     iconType: 'test',
     keyFormulaOrCode: '20% Module Weightage · Closed Book',
     title: 'Common Test',
-    summary: 'Mid-semester assessment evaluating Weeks 1 to 6: Thermodynamics, AC Systems, SS 553 Standards, Envelope ETTV, Cooling Load, and Psychrometric processes.',
+    summary: 'Common Test (20%). Covers Weeks 1 to 6. Bring your calculator.',
     keyConcepts: [
       'Covers Lessons 1, 2, 9, 10, 12, 13, and Practical 1.',
       'Formula sheets provided; standard scientific calculators required.',
@@ -312,7 +312,7 @@ export const WEEKS_DATA: WeekData[] = [
     iconType: 'psychrometric',
     keyFormulaOrCode: 'Qt = m·Δh · Qs = 1.012·m·ΔT',
     title: 'System Psychrometrics',
-    summary: 'Detailed psychrometric analysis of Variable Air Volume (VAV) and Fan Coil Unit (FCU) systems, partial load psychrometric tracking, bypass factor, and reheat dynamics.',
+    summary: 'More practice on the psychrometric chart, using real systems such as VAV and fan coil units.',
     keyConcepts: [
       'VAV systems modulate supply air flow rate while keeping supply air temperature constant (typically 13°C).',
       'FCU systems with Primary Air AHU (DOAS): Fresh outdoor air is pre-cooled and dehumidified before delivery to room units.',
@@ -322,7 +322,7 @@ export const WEEKS_DATA: WeekData[] = [
     ],
     tutorialQuestions: [
       {
-        questionNumber: 'Lessons 13 & 14 · Ex 5.4',
+        questionNumber: 'Worked example (slides Ex 5.4)',
         prompt: 'An AHU supplies 5.0 kg/s of air at state S (13°C DB, 90% RH, h=34.5 kJ/kg) from mixed air state M (26°C DB, h=56.2 kJ/kg). Calculate total coil cooling capacity in kW and RT.',
         solutionSteps: [
           'Enthalpy drop Δh = h_mixed - h_supply = 56.2 - 34.5 = 21.7 kJ/kg.',
@@ -333,8 +333,8 @@ export const WEEKS_DATA: WeekData[] = [
       },
     ],
     resources: [
-      { label: 'Lessons 13 & 14 Psychrometrics Slides (PDF)', pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Lesson_13___14_Psychrometics_Apr_26_3d552ceb.pdf`, isAvailable: true, type: 'lecture' },
-      { label: 'Psychrometric Chart (PDF)', pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Psychrometric_chart_1dc90027.pdf`, isAvailable: true, type: 'reference' },
+      { label: 'Slides: psychrometrics (Lessons 13 & 14 file)', pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Lesson_13___14_Psychrometics_Apr_26_3d552ceb.pdf`, isAvailable: true, type: 'lecture' },
+      { label: 'Psychrometric chart', pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Psychrometric_chart_1dc90027.pdf`, isAvailable: true, type: 'reference' },
     ],
     labTabId: 'psychrometrics',
   },
@@ -349,7 +349,7 @@ export const WEEKS_DATA: WeekData[] = [
     iconType: 'duct',
     keyFormulaOrCode: 'ΔP/L = 0.8–1.0 Pa/m · Huebscher De',
     title: 'Duct Systems & Sizing / Retest',
-    summary: 'Air distribution systems, supply registers, Coanda effect, throw and drop, Equal Friction duct sizing method, Huebscher circular equivalent equation, and Common Test retest.',
+    summary: 'How air is carried to rooms through ducts, and how to size a duct with the equal friction method. The Common Test retest is also this week.',
     keyConcepts: [
       'The Equal Friction method sizes duct networks for a constant pressure drop per unit length (0.8 to 1.0 Pa/m).',
       'Huebscher equation converts rectangular duct dimensions (a × b) to circular equivalent diameter: De = 1.30·(a·b)^0.625 / (a+b)^0.25.',
@@ -359,7 +359,7 @@ export const WEEKS_DATA: WeekData[] = [
     ],
     tutorialQuestions: [
       {
-        questionNumber: 'AMVS 3 · Q1',
+        questionNumber: 'Tutorial 3 · Q1',
         prompt: 'State the purpose of (a) wrapping supply air ducts with fiberglass and double-sided aluminum foil, and (b) internal acoustic insulation at the AHU.',
         solutionSteps: [
           '(a) External fiberglass insulation with aluminum foil vapor barrier prevents thermal heat gain from ceiling voids and prevents moisture condensation on the cold exterior duct surface (duct temp 13°C vs room dew point).',
@@ -369,10 +369,10 @@ export const WEEKS_DATA: WeekData[] = [
       },
     ],
     resources: [
-      { label: 'Lesson 3 Duct Systems Slides (PDF)', pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Lesson_3_Duct_Systems_Apr_26_450c1ce7.pdf`, isAvailable: true, type: 'lecture' },
-      { label: 'Lesson 4 Duct Systems Slides (PDF)', pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Lesson_4_Duct_Systems_Apr_26__2___1__450c1ce7.pdf`, isAvailable: true, type: 'lecture' },
-      { label: 'Duct Sizing Chart & Conversion Table (PDF)', pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Duct_Sizing_Chart__Conversion_Table_and_Duct_SizingTable_892b885e.pdf`, isAvailable: true, type: 'reference' },
-      { label: 'Tutorial AMVS 3 Problem Sheet (PDF)', pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Tutorial_3_Apr_26__1__57c7fbf4.pdf`, isAvailable: true, type: 'tutorial' },
+      { label: 'Slides: duct systems, part 1 (Lesson 3 file)', pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Lesson_3_Duct_Systems_Apr_26_450c1ce7.pdf`, isAvailable: true, type: 'lecture' },
+      { label: 'Slides: duct systems, part 2 (Lesson 4 file)', pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Lesson_4_Duct_Systems_Apr_26__2___1__450c1ce7.pdf`, isAvailable: true, type: 'lecture' },
+      { label: 'Duct sizing chart & conversion table', pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Duct_Sizing_Chart__Conversion_Table_and_Duct_SizingTable_892b885e.pdf`, isAvailable: true, type: 'reference' },
+      { label: 'Tutorial 3 questions (AMVS 3)', pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Tutorial_3_Apr_26__1__57c7fbf4.pdf`, isAvailable: true, type: 'tutorial' },
     ],
     labTabId: 'ducts',
   },
@@ -404,7 +404,7 @@ export const WEEKS_DATA: WeekData[] = [
     iconType: 'duct',
     keyFormulaOrCode: 'ΔPfitting = Σ C · Pv · Pv = 0.60·V²',
     title: 'Duct Systems & Sizing',
-    summary: 'Index run hydraulic resistance, dynamic fitting losses, velocity pressure, fan static pressure calculation, safety factors, and ceiling void depth constraints (300 mm max).',
+    summary: 'Finishing duct sizing: add up the pressure losses along the longest duct run to find how much pressure the fan must give.',
     keyConcepts: [
       'The Index Run is the hydraulically most resistant circuit from the fan discharge to the most remote diffuser.',
       'Dynamic fitting losses are calculated via loss coefficients: ΔP_fitting = Σ C × Pv, where Pv = 0.60 × V² (for air ρ = 1.2 kg/m³).',
@@ -413,7 +413,7 @@ export const WEEKS_DATA: WeekData[] = [
     ],
     tutorialQuestions: [
       {
-        questionNumber: 'AMVS 3 · Q4',
+        questionNumber: 'Tutorial 3 · Q4',
         prompt: 'Size the index run of the FCU ductwork in Figure 4 (4 diffusers @ 500 L/s, depth 300 mm max, friction 1.0 Pa/m, diffuser/grille loss 20 Pa each, 20% safety factor).',
         solutionSteps: [
           'Section 1 (2,000 L/s): Round eq Ø 560 mm → 850 × 300 mm (Vel = 7.8 m/s, Pv = 37 Pa)',
@@ -428,9 +428,9 @@ export const WEEKS_DATA: WeekData[] = [
       },
     ],
     resources: [
-      { label: 'Lesson 4 Duct Systems Slides (PDF)', pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Lesson_4_Duct_Systems_Apr_26__2___1__450c1ce7.pdf`, isAvailable: true, type: 'lecture' },
-      { label: 'Duct Sizing Table & Worksheet (PDF)', pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Duct_Sizing_Chart__Conversion_Table_and_Duct_SizingTable_892b885e.pdf`, isAvailable: true, type: 'worksheet' },
-      { label: 'Tutorial AMVS 3 Problem Sheet (PDF)', pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Tutorial_3_Apr_26__1__57c7fbf4.pdf`, isAvailable: true, type: 'tutorial' },
+      { label: 'Slides: duct systems, part 2 (Lesson 4 file)', pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Lesson_4_Duct_Systems_Apr_26__2___1__450c1ce7.pdf`, isAvailable: true, type: 'lecture' },
+      { label: 'Duct sizing chart & conversion table', pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Duct_Sizing_Chart__Conversion_Table_and_Duct_SizingTable_892b885e.pdf`, isAvailable: true, type: 'worksheet' },
+      { label: 'Tutorial 3 questions (AMVS 3)', pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Tutorial_3_Apr_26__1__57c7fbf4.pdf`, isAvailable: true, type: 'tutorial' },
     ],
     labTabId: 'ducts',
   },
@@ -445,7 +445,7 @@ export const WEEKS_DATA: WeekData[] = [
     iconType: 'equipment',
     keyFormulaOrCode: 'Computer-Aided Duct & Energy Sim',
     title: 'Practicals 2 & 3',
-    summary: 'Software-based ductwork network pressure calculation, fan static sizing, and energy performance modeling in computer laboratory.',
+    summary: 'Computer practicals (Practicals 2 & 3) in Room 34-02-06.',
     keyConcepts: [
       'Lecturers: David Teo / Gan Poh Tin.',
       'Computer-aided equal friction duct network sizing and bill of materials generation.',
@@ -466,7 +466,7 @@ export const WEEKS_DATA: WeekData[] = [
     iconType: 'pipe',
     keyFormulaOrCode: 'Le = (Le/D) · D · H = ΔP/(ρ·g)',
     title: 'Pipe Systems & Sizing',
-    summary: 'Hydronic chilled water and condenser water networks, flow velocity limits (0.6–2.4 m/s), Darcy-Weisbach friction, equivalent length Le/D method for fittings and valves.',
+    summary: 'How chilled water is piped around a building, and how to size the pipes so the water flows at the right speed without wasting pump energy.',
     keyConcepts: [
       'Velocity limits in steel pipe: 0.6 m/s minimum (prevent sediment accumulation), 1.2 to 2.4 m/s maximum (prevent erosion and water hammer noise).',
       'The Equivalent Length method accounts for turbulent fitting friction: Le = (Le/D) × Diameter (m).',
@@ -476,7 +476,7 @@ export const WEEKS_DATA: WeekData[] = [
     ],
     tutorialQuestions: [
       {
-        questionNumber: 'AMVS 4 · Q1',
+        questionNumber: 'Tutorial 4 · Q1',
         prompt: 'A chilled water pipe carries 40 L/s. Determine the standard nominal pipe size (mm) using the Pipe Sizing Table if velocity is limited to 1.8 m/s and friction is under 250 Pa/m.',
         solutionSteps: [
           'From Lesson 6 Pipe Sizing Table:',
@@ -487,10 +487,10 @@ export const WEEKS_DATA: WeekData[] = [
       },
     ],
     resources: [
-      { label: 'Lesson 6 Pipe Sizing Slides (PDF)', pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Lesson_6_Pipe_Sizing_Apr_26_813731d3.pdf`, isAvailable: true, type: 'lecture' },
-      { label: 'Pipe Sizing Table (PDF)', pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Pipe_Sizing_Table_34c2498b.pdf`, isAvailable: true, type: 'reference' },
-      { label: 'Friction Loss in Steel Pipe Schedule 40 (PDF)', pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Friction_Loss_for_Water_in_Commercial_Steel_Pipe_Schedule_40_4e619142.pdf`, isAvailable: true, type: 'reference' },
-      { label: 'Tutorial AMVS 4 Problem Sheet (PDF)', pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Tutorial_4_Apr_26_79ce2872.pdf`, isAvailable: true, type: 'tutorial' },
+      { label: 'Slides: pipe sizing (Lesson 6 file)', pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Lesson_6_Pipe_Sizing_Apr_26_813731d3.pdf`, isAvailable: true, type: 'lecture' },
+      { label: 'Pipe sizing table', pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Pipe_Sizing_Table_34c2498b.pdf`, isAvailable: true, type: 'reference' },
+      { label: 'Pipe friction loss chart (steel, Schedule 40)', pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Friction_Loss_for_Water_in_Commercial_Steel_Pipe_Schedule_40_4e619142.pdf`, isAvailable: true, type: 'reference' },
+      { label: 'Tutorial 4 questions (AMVS 4)', pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Tutorial_4_Apr_26_79ce2872.pdf`, isAvailable: true, type: 'tutorial' },
     ],
     labTabId: 'pipes',
   },
@@ -505,7 +505,7 @@ export const WEEKS_DATA: WeekData[] = [
     iconType: 'pipe',
     keyFormulaOrCode: 'Schedule 40 Friction · ΔP ≤ 250 Pa/m',
     title: 'Pipe Systems & Sizing / Air-conditioning Equipment',
-    summary: 'Balancing valves, 2-way modulating control valves, secondary pumping headers, pump head calculation, and transition to refrigeration equipment components.',
+    summary: 'Finishing pipe sizing (pump head, valves) and starting on the main equipment inside an air-conditioning plant.',
     keyConcepts: [
       'Primary/secondary hydronic decoupling with bridge header isolates chiller constant flow from variable building load.',
       '2-way control valves modulate chilled water flow through cooling coils while variable speed drives (VFD) ramp pump speeds.',
@@ -514,7 +514,7 @@ export const WEEKS_DATA: WeekData[] = [
     ],
     tutorialQuestions: [
       {
-        questionNumber: 'AMVS 4 · Q4',
+        questionNumber: 'Tutorial 4 · Q4',
         prompt: 'Calculate the total pump head required for the hydronic circuit in Figure 3 with 50m straight 150mm pipe (160 Pa/m), 4 elbows (Le/D=13), 2 gate valves (Le/D=7.5), 1 chiller evaporator (40 kPa), 1 AHU coil (35 kPa), and 1 balancing valve (15 kPa).',
         solutionSteps: [
           'Straight pipe friction = 50 m × 160 Pa/m = 8,000 Pa = 8.0 kPa.',
@@ -528,9 +528,9 @@ export const WEEKS_DATA: WeekData[] = [
       },
     ],
     resources: [
-      { label: 'Lesson 6 Pipe Sizing Part 2 (PDF)', pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Lesson_6_Pipe_Sizing_Apr_26__1__813731d3.pdf`, isAvailable: true, type: 'lecture' },
-      { label: 'Lesson 2 Equipment Slides (PDF)', pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Lesson_2_Equipment_Apr_26_30dcd678.pdf`, isAvailable: true, type: 'lecture' },
-      { label: 'Tutorial AMVS 4 Problem Sheet (PDF)', pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Tutorial_4_Apr_26_79ce2872.pdf`, isAvailable: true, type: 'tutorial' },
+      { label: 'Slides: pipe sizing (Lesson 6 file)', pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Lesson_6_Pipe_Sizing_Apr_26__1__813731d3.pdf`, isAvailable: true, type: 'lecture' },
+      { label: 'Slides: AC equipment (Lesson 2 Equipment file)', pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Lesson_2_Equipment_Apr_26_30dcd678.pdf`, isAvailable: true, type: 'lecture' },
+      { label: 'Tutorial 4 questions (AMVS 4)', pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Tutorial_4_Apr_26_79ce2872.pdf`, isAvailable: true, type: 'tutorial' },
     ],
     labTabId: 'pipes',
   },
@@ -545,7 +545,7 @@ export const WEEKS_DATA: WeekData[] = [
     iconType: 'equipment',
     keyFormulaOrCode: 'Approach = Tleaving - Tsat ≤ 2.0°C',
     title: 'Air-conditioning Equipment',
-    summary: 'Compressors (Reciprocating, Centrifugal with Magnetic Bearings, Screw, Scroll), metering devices (TXV, EEV), shell & tube condensers/evaporators, automatic tube cleaning, Legionella control protocols.',
+    summary: 'The main parts of the plant: compressors, condensers, evaporators and expansion valves, plus keeping cooling towers safe from Legionella.',
     keyConcepts: [
       'Compressor classification: Reciprocating (5–500 kW), Centrifugal (450 kW–20 MW), Screw (450–1500 kW), Scroll (5–50 kW).',
       'Magnetic bearing centrifugal chillers (Turbocor) eliminate lubricating oil, preventing oil fouling on evaporator tubes.',
@@ -556,7 +556,7 @@ export const WEEKS_DATA: WeekData[] = [
     ],
     tutorialQuestions: [
       {
-        questionNumber: 'AMVS 2 · Q10',
+        questionNumber: 'Tutorial 2 · Q10',
         prompt: 'State the chronological starting sequence for water-cooled central chilled water plant equipment.',
         solutionSteps: [
           '1. Start Cooling Towers (establishes draft and air flow).',
@@ -568,8 +568,8 @@ export const WEEKS_DATA: WeekData[] = [
       },
     ],
     resources: [
-      { label: 'Lesson 2 Equipment Slides (PDF)', pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Lesson_2_Equipment_Apr_26_30dcd678.pdf`, isAvailable: true, type: 'lecture' },
-      { label: 'Tutorial AMVS 2 Problem Sheet (PDF)', pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Tutorial_2_Apr_26_1b03e097.pdf`, isAvailable: true, type: 'tutorial' },
+      { label: 'Slides: AC equipment (Lesson 2 Equipment file)', pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Lesson_2_Equipment_Apr_26_30dcd678.pdf`, isAvailable: true, type: 'lecture' },
+      { label: 'Tutorial 2 questions (AMVS 2)', pdfPath: `${import.meta.env.BASE_URL}assets/aistudio/Tutorial_2_Apr_26_1b03e097.pdf`, isAvailable: true, type: 'tutorial' },
     ],
     labTabId: 'ac-systems',
   },
@@ -584,7 +584,7 @@ export const WEEKS_DATA: WeekData[] = [
     iconType: 'test',
     keyFormulaOrCode: '20% Module Weightage · WTEST',
     title: 'Test 2',
-    summary: 'Final comprehensive written examination covering the entire semester curriculum (SS 553, Envelope ETTV, Cooling Load, Psychrometrics, Duct Sizing, and Pipe Sizing).',
+    summary: 'Test 2 (Written Test, 20%) in LT 51B.',
     keyConcepts: [
       'Comprehensive final written test covering all 14 weeks of study.',
       '20% of final grade score.',
