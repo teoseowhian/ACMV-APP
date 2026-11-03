@@ -1,6 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import path from 'path';
+import fs from 'fs';
 import { fileURLToPath } from 'url';
 import { GoogleGenAI } from '@google/genai';
 
@@ -10,13 +11,37 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-// Render injects PORT; fall back to 3000 for local runs
-const PORT = Number(process.env.PORT) || 3000;
+// Cloud Run injects PORT; dev server passes --port 3000
+function getPort() {
+  const portArgIndex = process.argv.findIndex((arg) => arg === '--port' || arg === '-p');
+  if (portArgIndex !== -1 && process.argv[portArgIndex + 1]) {
+    const parsed = Number(process.argv[portArgIndex + 1]);
+    if (!isNaN(parsed) && parsed > 0) return parsed;
+  }
+  return Number(process.env.PORT) || 3000;
+}
+
+const PORT = getPort();
 
 app.use(express.json());
 
+// Standard container health check endpoints for Cloud Run / load balancers
+app.get('/healthz', (_req, res) => {
+  res.status(200).send('OK');
+});
+
+app.get('/api/health', (_req, res) => {
+  res.status(200).json({
+    status: 'ok',
+    port: PORT,
+    nodeEnv: process.env.NODE_ENV || 'development',
+    service: process.env.K_SERVICE || 'local',
+    timestamp: new Date().toISOString(),
+  });
+});
+
 // Initialize GoogleGenAI if key available (server-side, never exposed to the browser)
-let aiClient: GoogleGenAI | null = null;
+let aiClient: any = null;
 if (process.env.GEMINI_API_KEY) {
   aiClient = new GoogleGenAI({
     apiKey: process.env.GEMINI_API_KEY,
@@ -43,7 +68,7 @@ CRITICAL PEDAGOGY:
 Always keep responses concise, encouraging, and technically rigorous.`;
 
 // AI Chatbot endpoint
-app.post('/api/chat', async (req: express.Request, res: express.Response) => {
+app.post('/api/chat', async (req, res) => {
   try {
     const { message, history = [] } = req.body;
 
@@ -99,25 +124,38 @@ app.post('/api/chat', async (req: express.Request, res: express.Response) => {
   }
 });
 
-// In development, mount Vite middleware; in production, serve built static assets
+// Start server: In production (Cloud Run) or when dist is pre-built, serve static assets.
+// Only mount Vite dev server when explicitly running in local dev mode.
 async function startServer() {
-  if (process.env.NODE_ENV !== 'production') {
+  const distPath = path.join(__dirname, 'dist');
+  const indexHtmlPath = path.join(distPath, 'index.html');
+  const distExists = fs.existsSync(indexHtmlPath);
+
+  // In Cloud Run (K_SERVICE is set) or production (NODE_ENV=production) or whenever dist exists (unless explicitly npm run dev)
+  const isDevCommand = process.env.npm_lifecycle_event === 'dev';
+  const isCloudRun = Boolean(process.env.K_SERVICE);
+  const isProduction = isCloudRun || process.env.NODE_ENV === 'production' || (!isDevCommand && distExists);
+
+  if (isProduction && distExists) {
+    console.log(`[ACMV Server] Serving production static bundle from ${distPath}`);
+    app.use(express.static(distPath));
+    app.get('*', (_req, res) => {
+      res.sendFile(indexHtmlPath);
+    });
+  } else {
+    console.log(`[ACMV Server] Mounting Vite development middleware`);
     const { createServer: createViteServer } = await import('vite');
     const vite = await createViteServer({
       server: { middlewareMode: true },
       appType: 'spa',
     });
     app.use(vite.middlewares);
-  } else {
-    app.use(express.static(path.join(__dirname, 'dist')));
-    app.get('*', (_req, res) => {
-      res.sendFile(path.join(__dirname, 'dist', 'index.html'));
-    });
   }
 
   app.listen(PORT, '0.0.0.0', () => {
-    console.log(`ACMV Masterclass server running on http://0.0.0.0:${PORT}`);
+    console.log(`ACMV Masterclass server running on http://0.0.0.0:${PORT} (PID: ${process.pid})`);
   });
 }
 
 startServer();
+

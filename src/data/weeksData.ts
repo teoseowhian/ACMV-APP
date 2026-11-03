@@ -25,6 +25,7 @@ export interface WeekData {
   summary: string;
   keyConcepts: string[];
   tutorialQuestions: WeekTutorialQuestion[];
+  tutorialId?: string; // 'tutorial-1' | 'tutorial-2' | 'tutorial-3' | 'tutorial-4'
   resources: WeekResource[];
   labTabId?: string; // e.g. 'refrigeration', 'ac-systems', 'ducts', 'chiller', 'pipes', 'ettv', 'cooling-load', 'psychrometrics'
   isSpecial?: 'recess' | 'test' | 'practical';
@@ -51,37 +52,8 @@ export const WEEKS_DATA: WeekData[] = [
       'Singapore District Cooling (Marina Bay & Keppel DHCS) centralizes chilled water at 6°C ± 0.5°C with return > 14°C.',
       'Thermal Energy Storage (TES) shifts electrical consumption to off-peak night hours when tariffs are discounted.',
     ],
-    tutorialQuestions: [
-      {
-        questionNumber: 'AMVS 1 · Q1',
-        prompt: 'Explain the main difference between a DX (Direct Expansion) and a chilled water system.',
-        solutionSteps: [
-          'In a DX system, refrigerant evaporates directly inside the cooling coil located in the room or AHU, directly cooling the indoor air.',
-          'In a Chilled Water system, refrigerant evaporates in a central chiller to produce chilled water (typically 6.7°C to 8.0°C), which is then pumped through a secondary pipe network to AHUs and FCUs across the building.',
-        ],
-        finalAnswer: 'DX circulates refrigerant directly into room evaporator coils; Chilled Water uses water as a secondary heat transfer fluid pumped from a central plant.',
-      },
-      {
-        questionNumber: 'AMVS 1 · Q4(c)',
-        prompt: 'The rated cooling capacity of a split unit is 18,000 Btu/h. What is its rating in RT?',
-        solutionSteps: [
-          'Conversion formula: 1 RT = 12,000 Btu/h.',
-          'Capacity (RT) = 18,000 / 12,000 = 1.50 RT.',
-        ],
-        finalAnswer: '1.50 RT (or 5.27 kW)',
-      },
-      {
-        questionNumber: 'AMVS 1 · Q5',
-        prompt: 'A water-cooled chiller consumes 480 kWe when providing a cooling capacity of 3600 kWr. What is its efficiency in terms of kWe/RT and COP?',
-        solutionSteps: [
-          'Cooling capacity in RT = 3600 kW / 3.517 = 1,023.6 RT.',
-          'Efficiency (kWe/RT) = Chiller electrical power / Cooling RT = 480 / 1023.6 = 0.469 kWe/RT.',
-          'COP = Cooling kW / Electrical kW = 3600 / 480 = 7.50.',
-          'Verification: kWe/RT = 3.517 / COP = 3.517 / 7.50 = 0.469 kWe/RT.',
-        ],
-        finalAnswer: '0.469 kWe/RT | COP = 7.50',
-      },
-    ],
+    tutorialQuestions: [],
+    tutorialId: 'tutorial-1',
     resources: [
       { label: 'Lesson 1 Module Introduction (PDF)', pdfPath: '/assets/aistudio/Lesson_1_Module_Introduction_Apr26_1c9b0222.pdf', isAvailable: true, type: 'lecture' },
       { label: 'Lesson 1 AC System Part 1 (PDF)', pdfPath: '/assets/aistudio/Lesson_1_Air-conditional_System_Part1_Apr26_44a6b178.pdf', isAvailable: true, type: 'lecture' },
@@ -110,18 +82,7 @@ export const WEEKS_DATA: WeekData[] = [
       'Air distribution patterns: Constant Air Volume (CAV) for uniform heat load; Variable Air Volume (VAV) for perimeter/interior zoning.',
       'Positive room pressure (+10 to +25 Pa) prevents humid outdoor air and particulate infiltration through door cracks.',
     ],
-    tutorialQuestions: [
-      {
-        questionNumber: 'Lesson 9 · Review Q1',
-        prompt: 'State the recommended indoor design conditions specified under Singapore Standard SS 553:2016 for commercial offices.',
-        solutionSteps: [
-          '1. Dry Bulb Temperature: 23°C to 25°C (target 24°C).',
-          '2. Relative Humidity: ≤ 65% (prevents mold growth while ensuring occupant comfort).',
-          '3. Air Velocity: 0.15 m/s to 0.30 m/s (avoids perceptible draughts yet prevents air stagnation).',
-        ],
-        finalAnswer: 'DB: 23–25°C | RH: ≤ 65% | Velocity: 0.15–0.30 m/s',
-      },
-    ],
+    tutorialQuestions: [],
     resources: [
       { label: 'Lesson 9 Design Lecture Slides (PDF)', pdfPath: '/assets/aistudio/Lesson_9_Design_Apr_26_ce5bf399.pdf', isAvailable: true, type: 'lecture' },
       { label: 'Psychrometric Chart (PDF)', pdfPath: '/assets/aistudio/Psychrometric_chart_1dc90027.pdf', isAvailable: true, type: 'reference' },
@@ -148,21 +109,7 @@ export const WEEKS_DATA: WeekData[] = [
       'ETTV formula: ETTV = 12(1 - WWR)Uw + 3.4(WWR)Uf + 211(WWR)(CF)(SC). Statutory limit: ≤ 50 W/m² (BCA Green Mark ≤ 45 W/m² for Platinum).',
       'Shading Coefficient (SC) and Correction Factor (CF based on orientation: North, South, East, West) govern solar heat gains.',
     ],
-    tutorialQuestions: [
-      {
-        questionNumber: 'Lesson 10 · Worked Ex 1',
-        prompt: 'Calculate the overall thermal transmittance (U-value) for an exterior wall: 15mm granite (k=2.927), 100mm lightweight concrete (k=0.346), 20mm air space (R=0.148), 20mm gypsum plasterboard (k=0.170). Outside film Ro = 0.044, inside film Ri = 0.120 m²K/W.',
-        solutionSteps: [
-          'R_granite = 0.015 / 2.927 = 0.0051 m²K/W.',
-          'R_concrete = 0.100 / 0.346 = 0.2890 m²K/W.',
-          'R_air = 0.1480 m²K/W.',
-          'R_gypsum = 0.020 / 0.170 = 0.1176 m²K/W.',
-          'Total RT = Ro + R_granite + R_concrete + R_air + R_gypsum + Ri = 0.044 + 0.0051 + 0.2890 + 0.1480 + 0.1176 + 0.120 = 0.7237 m²K/W.',
-          'U-value = 1 / RT = 1 / 0.7237 = 1.382 W/m²K.',
-        ],
-        finalAnswer: 'RT = 0.724 m²K/W | Uw = 1.38 W/m²K',
-      },
-    ],
+    tutorialQuestions: [],
     resources: [
       { label: 'Lesson 10 Envelope Thermal Performance (PDF)', pdfPath: '/assets/aistudio/Lesson_10_Envelope_Thermal_Performance_Apr_26_d6fba43d.pdf', isAvailable: true, type: 'lecture' },
     ],
@@ -188,20 +135,7 @@ export const WEEKS_DATA: WeekData[] = [
       'Sensible Heat Ratio: SHR = Qs / (Qs + Ql). Commercial offices in Singapore typically operate at SHR = 0.75 to 0.85.',
       'Lighting power density targets under SS 530: ≤ 12 W/m² (LED technology often reaches 6–8 W/m²).',
     ],
-    tutorialQuestions: [
-      {
-        questionNumber: 'Lesson 12 · Load Check',
-        prompt: 'An office has 20 occupants, each releasing 75 W sensible and 55 W latent heat. Lighting is 1,200 W and computers release 2,400 W. Calculate space sensible, latent, and total heat gain in kW and SHR.',
-        solutionSteps: [
-          'Occupant sensible = 20 × 75 = 1,500 W.',
-          'Total Sensible Qs = 1,500 (people) + 1,200 (lights) + 2,400 (plugs) = 5,100 W = 5.10 kW.',
-          'Occupant latent Ql = 20 × 55 = 1,100 W = 1.10 kW.',
-          'Total cooling load Qt = Qs + Ql = 5.10 + 1.10 = 6.20 kW.',
-          'SHR = Qs / Qt = 5.10 / 6.20 = 0.823.',
-        ],
-        finalAnswer: 'Qs = 5.10 kW | Ql = 1.10 kW | Total = 6.20 kW (1.76 RT) | SHR = 0.82',
-      },
-    ],
+    tutorialQuestions: [],
     resources: [
       { label: 'Lesson 12 Cooling Load Estimation (PDF)', pdfPath: '/assets/aistudio/Lesson_12_Cooling_Load_Estimation_Apr_26_fac925dc.pdf', isAvailable: true, type: 'lecture' },
     ],
@@ -227,20 +161,8 @@ export const WEEKS_DATA: WeekData[] = [
       'Overall chilled water plant efficiency: kW/RT = (P_chiller + P_chwp + P_cwp + P_ct) / Cooling RT.',
       'BCA Green Mark Platinum threshold: overall plant efficiency ≤ 0.65 kW/RT.',
     ],
-    tutorialQuestions: [
-      {
-        questionNumber: 'AMVS 2 · Q8',
-        prompt: 'Calculate chiller cooling capacity, kW/RT, and approach: V_chw = 128 L/s (8°C to 13°C), V_cw = 125 L/s (29°C to 35°C), Power = 462 kW, Saturated Condensing = 36.8°C, Saturated Evaporating = 6.5°C.',
-        solutionSteps: [
-          'Cooling capacity Q_chw = 128 × 4.2 × (13 - 8) = 2,688 kW.',
-          'Cooling capacity in RT = 2688 / 3.517 = 764.3 RT.',
-          'Efficiency = 462 kW / 764.3 RT = 0.605 kWe/RT (COP = 5.82).',
-          'Evaporator approach = Leaving CHW (8.0°C) - Evap sat (6.5°C) = 1.5°C.',
-          'Condenser approach = Cond sat (36.8°C) - Leaving CW (35.0°C) = 1.8°C.',
-        ],
-        finalAnswer: 'Cooling = 2,688 kW (764.3 RT) | 0.605 kWe/RT | Evaporator Approach = 1.5°C | Condenser Approach = 1.8°C',
-      },
-    ],
+    tutorialQuestions: [],
+    tutorialId: 'tutorial-2',
     resources: [
       { label: 'Lesson 5 ACMV P1 Chiller Practical Slides (PDF)', pdfPath: '/assets/aistudio/Lesson_5_ACMV_P1_Chiller_Apr_26_6d04ba2c.pdf', isAvailable: true, type: 'lecture' },
       { label: 'Tutorial AMVS 2 Problem Sheet (PDF)', pdfPath: '/assets/aistudio/Tutorial_2_Apr_26_1b03e097.pdf', isAvailable: true, type: 'tutorial' },
@@ -268,19 +190,7 @@ export const WEEKS_DATA: WeekData[] = [
       'Apparatus Dew Point (ADP): The effective surface temperature of the cooling coil tubes and fins.',
       'Coil Bypass Factor (BF): Fraction of air that slips between fins without contacting cold metal (typically 0.05 to 0.15 for commercial AHUs).',
     ],
-    tutorialQuestions: [
-      {
-        questionNumber: 'Lessons 13 & 14 · Ex 5.1',
-        prompt: '1,000 L/s of outdoor air at 33°C DB, 60% RH mixes with 4,000 L/s of room air at 24°C DB, 50% RH. Calculate the mixed air dry bulb temperature.',
-        solutionSteps: [
-          'Total air volume = 1,000 + 4,000 = 5,000 L/s.',
-          'Outdoor air fraction = 1,000 / 5,000 = 0.20 (20%).',
-          'Recirculated air fraction = 4,000 / 5,000 = 0.80 (80%).',
-          'Mixed DB temperature Tm = 0.20 × 33°C + 0.80 × 24°C = 6.6 + 19.2 = 25.8°C.',
-        ],
-        finalAnswer: 'Mixed Air Temperature Tm = 25.8°C',
-      },
-    ],
+    tutorialQuestions: [],
     resources: [
       { label: 'Lessons 13 & 14 Psychrometrics Slides (PDF)', pdfPath: '/assets/aistudio/Lesson_13___14_Psychrometics_Apr_26_3d552ceb.pdf', isAvailable: true, type: 'lecture' },
       { label: 'Psychrometric Chart (PDF)', pdfPath: '/assets/aistudio/Psychrometric_chart_1dc90027.pdf', isAvailable: true, type: 'reference' },
@@ -329,18 +239,7 @@ export const WEEKS_DATA: WeekData[] = [
       'Room sensible load: Qs (kW) = m_supply × Cpa × [T_room - T_supply].',
       'Fan heat gain and duct heat pickup elevate supply air temperature by 0.5°C to 1.5°C before diffusers.',
     ],
-    tutorialQuestions: [
-      {
-        questionNumber: 'Lessons 13 & 14 · Ex 5.4',
-        prompt: 'An AHU supplies 5.0 kg/s of air at state S (13°C DB, 90% RH, h=34.5 kJ/kg) from mixed air state M (26°C DB, h=56.2 kJ/kg). Calculate total coil cooling capacity in kW and RT.',
-        solutionSteps: [
-          'Enthalpy drop Δh = h_mixed - h_supply = 56.2 - 34.5 = 21.7 kJ/kg.',
-          'Total cooling load Qt = m_air × Δh = 5.0 kg/s × 21.7 kJ/kg = 108.5 kW.',
-          'In Refrigeration Tons = 108.5 / 3.517 = 30.85 RT.',
-        ],
-        finalAnswer: 'Cooling Capacity Qt = 108.5 kW (30.9 RT)',
-      },
-    ],
+    tutorialQuestions: [],
     resources: [
       { label: 'Lessons 13 & 14 Psychrometrics Slides (PDF)', pdfPath: '/assets/aistudio/Lesson_13___14_Psychrometics_Apr_26_3d552ceb.pdf', isAvailable: true, type: 'lecture' },
       { label: 'Psychrometric Chart (PDF)', pdfPath: '/assets/aistudio/Psychrometric_chart_1dc90027.pdf', isAvailable: true, type: 'reference' },
@@ -367,17 +266,8 @@ export const WEEKS_DATA: WeekData[] = [
       'Air entrainment and induction mix cold supply air with room air before it sinks into the occupied zone.',
       'Noise criteria for offices: NC 30–35 (general), NC 40–50 (lobbies/cafeterias) per SS 553:2016.',
     ],
-    tutorialQuestions: [
-      {
-        questionNumber: 'AMVS 3 · Q1',
-        prompt: 'State the purpose of (a) wrapping supply air ducts with fiberglass and double-sided aluminum foil, and (b) internal acoustic insulation at the AHU.',
-        solutionSteps: [
-          '(a) External fiberglass insulation with aluminum foil vapor barrier prevents thermal heat gain from ceiling voids and prevents moisture condensation on the cold exterior duct surface (duct temp 13°C vs room dew point).',
-          '(b) Internal acoustic insulation lines the first 3–6 meters of supply/return ducts at the AHU to attenuate fan motor blade pass frequencies and air turbulence noise before entering occupied spaces.',
-        ],
-        finalAnswer: '(a) Thermal insulation & condensation barrier | (b) Acoustic noise attenuation from AHU fan',
-      },
-    ],
+    tutorialQuestions: [],
+    tutorialId: 'tutorial-3',
     resources: [
       { label: 'Lesson 3 Duct Systems Slides (PDF)', pdfPath: '/assets/aistudio/Lesson_3_Duct_Systems_Apr_26_450c1ce7.pdf', isAvailable: true, type: 'lecture' },
       { label: 'Lesson 4 Duct Systems Slides (PDF)', pdfPath: '/assets/aistudio/Lesson_4_Duct_Systems_Apr_26__2___1__450c1ce7.pdf', isAvailable: true, type: 'lecture' },
@@ -422,22 +312,8 @@ export const WEEKS_DATA: WeekData[] = [
       'External Fan Static Pressure = (Σ Straight Friction + Σ Fitting Dynamic Losses + Terminal Losses) × Safety Factor (1.20).',
       'Aspect ratio of rectangular ducts should ideally be kept below 3:1 to minimize sheet metal cost and excess friction.',
     ],
-    tutorialQuestions: [
-      {
-        questionNumber: 'AMVS 3 · Q4',
-        prompt: 'Size the index run of the FCU ductwork in Figure 4 (4 diffusers @ 500 L/s, depth 300 mm max, friction 1.0 Pa/m, diffuser/grille loss 20 Pa each, 20% safety factor).',
-        solutionSteps: [
-          'Section 1 (2,000 L/s): Round eq Ø 560 mm → 850 × 300 mm (Vel = 7.8 m/s, Pv = 37 Pa)',
-          'Section 2 (1,500 L/s): Round eq Ø 500 mm → 700 × 300 mm (Vel = 7.1 m/s, Pv = 31 Pa)',
-          'Section 3 (1,000 L/s): Round eq Ø 450 mm → 500 × 300 mm (Vel = 6.7 m/s, Pv = 27 Pa)',
-          'Section 4 (500 L/s): Round eq Ø 355 mm → 300 × 300 mm (Vel = 5.6 m/s, Pv = 19 Pa)',
-          'Total straight duct length in index run = 26 m @ 1.0 Pa/m = 26.0 Pa.',
-          'Dynamic fitting losses = 58.4 Pa | Terminal losses = 40.0 Pa.',
-          'Total pressure loss = 124.4 Pa | Applying 20% Safety Factor: 124.4 × 1.20 = 149.3 Pa.',
-        ],
-        finalAnswer: 'Required External Fan Static Pressure = 149.3 Pa ≈ 150 Pa',
-      },
-    ],
+    tutorialQuestions: [],
+    tutorialId: 'tutorial-3',
     resources: [
       { label: 'Lesson 4 Duct Systems Slides (PDF)', pdfPath: '/assets/aistudio/Lesson_4_Duct_Systems_Apr_26__2___1__450c1ce7.pdf', isAvailable: true, type: 'lecture' },
       { label: 'Duct Sizing Table & Worksheet (PDF)', pdfPath: '/assets/aistudio/Duct_Sizing_Chart__Conversion_Table_and_Duct_SizingTable_892b885e.pdf', isAvailable: true, type: 'worksheet' },
@@ -487,18 +363,8 @@ export const WEEKS_DATA: WeekData[] = [
       'Total equivalent length = Straight pipe length + Σ Equivalent length of all fittings and valves.',
       'Total Pump Head (m) = Total system pressure drop ΔP (kPa) / (ρ × g) = ΔP / 9.81.',
     ],
-    tutorialQuestions: [
-      {
-        questionNumber: 'AMVS 4 · Q1',
-        prompt: 'A chilled water pipe carries 40 L/s. Determine the standard nominal pipe size (mm) using the Pipe Sizing Table if velocity is limited to 1.8 m/s and friction is under 250 Pa/m.',
-        solutionSteps: [
-          'From Lesson 6 Pipe Sizing Table:',
-          '125 mm pipe at 40 L/s: Velocity = 1.95 m/s (exceeds 1.8 m/s limit).',
-          '150 mm pipe at 40 L/s: Velocity = 1.35 m/s (compliant < 1.8 m/s), Friction loss = 160 Pa/m (compliant < 250 Pa/m).',
-        ],
-        finalAnswer: 'Nominal Pipe Size = 150 mm (Velocity = 1.35 m/s, Friction = 160 Pa/m)',
-      },
-    ],
+    tutorialQuestions: [],
+    tutorialId: 'tutorial-4',
     resources: [
       { label: 'Lesson 6 Pipe Sizing Slides (PDF)', pdfPath: '/assets/aistudio/Lesson_6_Pipe_Sizing_Apr_26_813731d3.pdf', isAvailable: true, type: 'lecture' },
       { label: 'Pipe Sizing Table (PDF)', pdfPath: '/assets/aistudio/Pipe_Sizing_Table_34c2498b.pdf', isAvailable: true, type: 'reference' },
@@ -526,21 +392,8 @@ export const WEEKS_DATA: WeekData[] = [
       'Schedule 40 commercial steel pipe friction charts: determine Pa/m friction based on flow rate L/s and internal roughness.',
       'Compressor operational fundamentals: suction superheat, discharge temperature, and compression ratio.',
     ],
-    tutorialQuestions: [
-      {
-        questionNumber: 'AMVS 4 · Q4',
-        prompt: 'Calculate the total pump head required for the hydronic circuit in Figure 3 with 50m straight 150mm pipe (160 Pa/m), 4 elbows (Le/D=13), 2 gate valves (Le/D=7.5), 1 chiller evaporator (40 kPa), 1 AHU coil (35 kPa), and 1 balancing valve (15 kPa).',
-        solutionSteps: [
-          'Straight pipe friction = 50 m × 160 Pa/m = 8,000 Pa = 8.0 kPa.',
-          'Fittings Le = [4 × (13 × 0.15) + 2 × (7.5 × 0.15)] = [7.8 + 2.25] = 10.05 m equivalent.',
-          'Fitting friction = 10.05 m × 160 Pa/m = 1,608 Pa = 1.6 kPa.',
-          'Equipment pressure drops = 40.0 + 35.0 + 15.0 = 90.0 kPa.',
-          'Total pressure drop = 8.0 + 1.6 + 90.0 = 99.6 kPa.',
-          'Pump head H = 99.6 kPa / 9.81 = 10.15 metres.',
-        ],
-        finalAnswer: 'Total Pressure Drop = 99.6 kPa | Required Pump Head = 10.2 metres',
-      },
-    ],
+    tutorialQuestions: [],
+    tutorialId: 'tutorial-4',
     resources: [
       { label: 'Lesson 6 Pipe Sizing Part 2 (PDF)', pdfPath: '/assets/aistudio/Lesson_6_Pipe_Sizing_Apr_26__1__813731d3.pdf', isAvailable: true, type: 'lecture' },
       { label: 'Lesson 2 Equipment Slides (PDF)', pdfPath: '/assets/aistudio/Lesson_2_Equipment_Apr_26_30dcd678.pdf', isAvailable: true, type: 'lecture' },
@@ -569,19 +422,8 @@ export const WEEKS_DATA: WeekData[] = [
       'Automatic condenser tube cleaning (Innova-ball / automatic brush systems) maintains clean tubes and low approach.',
       'Cooling tower maintenance: NEA Code of Practice requires monthly plate count, quarterly Legionella tests, and 5m public setbacks.',
     ],
-    tutorialQuestions: [
-      {
-        questionNumber: 'AMVS 2 · Q10',
-        prompt: 'State the chronological starting sequence for water-cooled central chilled water plant equipment.',
-        solutionSteps: [
-          '1. Start Cooling Towers (establishes draft and air flow).',
-          '2. Start Condenser Water Pumps (establishes condenser heat rejection flow).',
-          '3. Start Chilled Water Pumps (establishes evaporator water circulation to prevent freezing).',
-          '4. Start Water-Cooled Chillers (flow switches confirm flow before compressor start).',
-        ],
-        finalAnswer: '1. Cooling Towers → 2. Condenser Water Pumps → 3. Chilled Water Pumps → 4. Water-Cooled Chillers',
-      },
-    ],
+    tutorialQuestions: [],
+    tutorialId: 'tutorial-2',
     resources: [
       { label: 'Lesson 2 Equipment Slides (PDF)', pdfPath: '/assets/aistudio/Lesson_2_Equipment_Apr_26_30dcd678.pdf', isAvailable: true, type: 'lecture' },
       { label: 'Tutorial AMVS 2 Problem Sheet (PDF)', pdfPath: '/assets/aistudio/Tutorial_2_Apr_26_1b03e097.pdf', isAvailable: true, type: 'tutorial' },

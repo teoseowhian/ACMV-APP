@@ -21,12 +21,16 @@ import {
   ArrowRight,
   ShieldCheck,
   HelpCircle,
+  Eye,
+  EyeOff,
 } from 'lucide-react';
 import { WEEKS_DATA, WeekData } from '../data/weeksData';
+import { getTutorialForWeek } from '../data/tutorialGuides';
+import { TutorialsSection } from './TutorialsSection';
 
 interface HomePagePosterProps {
   onOpenLab: (labId?: string) => void;
-  onOpenPdf: (pdfPath: string, title: string) => void;
+  onOpenPdf: (pdfPath: string, title?: string) => void;
   onOpenAiTutor: (topic?: string) => void;
 }
 
@@ -37,12 +41,18 @@ export const HomePagePoster: React.FC<HomePagePosterProps> = ({
 }) => {
   // Week 3 is open by default since today (Tue 3 Nov 2026) leads into Week 3 (Thu 5 Nov 2026)
   const [expandedWeek, setExpandedWeek] = useState<number | null>(3);
+  // Track hidden/revealed answers in week cards: key = `w${weekNum}-${tutId}-${qIdx}`
+  const [revealedWeekAnswers, setRevealedWeekAnswers] = useState<Record<string, boolean>>({});
 
   // Current upcoming lesson for Oct26 semester as of today (Tue 3 Nov 2026) is Week 3
   const currentWeek: WeekData = WEEKS_DATA.find((w) => w.weekNumber === 3) || WEEKS_DATA[2];
 
   const toggleExpand = (weekNum: number) => {
     setExpandedWeek(expandedWeek === weekNum ? null : weekNum);
+  };
+
+  const toggleWeekAnswer = (key: string) => {
+    setRevealedWeekAnswers((prev) => ({ ...prev, [key]: !prev[key] }));
   };
 
   const getWeekIcon = (topic: string) => {
@@ -123,6 +133,13 @@ export const HomePagePoster: React.FC<HomePagePosterProps> = ({
             >
               <Play className="w-4 h-4 fill-current" /> Open Lab Simulators
             </button>
+
+            <a
+              href="#tutorials"
+              className="bg-rose-50 hover:bg-rose-100 text-[#C8102E] px-4 py-2.5 rounded-xl font-bold text-sm flex items-center gap-2 border border-rose-200 transition"
+            >
+              <BookOpen className="w-4 h-4" /> Tutorials (AMVS 1–4)
+            </a>
 
             <button
               onClick={() => onOpenAiTutor('Envelope Thermal Performance & ETTV')}
@@ -364,41 +381,112 @@ export const HomePagePoster: React.FC<HomePagePosterProps> = ({
                         </div>
                       )}
 
-                      {/* Tutorial Questions & Worked Solutions */}
-                      {week.tutorialQuestions.length > 0 && (
-                        <div className="space-y-3">
-                          <h4 className="text-xs font-bold uppercase tracking-wider text-slate-700 flex items-center gap-1.5">
-                            <HelpCircle className="w-4 h-4 text-slate-500" /> Tutorial Questions & Worked Solutions
-                          </h4>
-                          <div className="space-y-3">
-                            {week.tutorialQuestions.map((tq) => (
-                              <div
-                                key={tq.questionNumber}
-                                className="bg-white p-4 rounded-xl border border-slate-200/80 space-y-2 text-xs"
-                              >
-                                <div className="font-bold text-slate-900 flex items-center justify-between">
-                                  <span>{tq.questionNumber}</span>
-                                  <span className="font-mono text-slate-500 font-normal">Worked Example</span>
-                                </div>
-                                <p className="text-slate-700 italic">{tq.prompt}</p>
-                                <div className="bg-slate-900 text-emerald-300 p-3 rounded-lg font-mono text-[11px] leading-relaxed overflow-x-auto space-y-1.5">
-                                  <div className="text-slate-400 text-[10px] uppercase font-bold">
-                                    Solution Working Steps:
-                                  </div>
-                                  <ul className="space-y-1 list-disc list-inside">
-                                    {tq.solutionSteps.map((s, sIdx) => (
-                                      <li key={sIdx} className="text-slate-300">{s}</li>
-                                    ))}
-                                  </ul>
-                                  <div className="pt-1.5 border-t border-slate-800 text-emerald-400 font-semibold">
-                                    Final Answer: {tq.finalAnswer}
-                                  </div>
-                                </div>
+                      {/* Tutorial n (AMVS n): step-by-step guide (Only for Weeks 1, 5, 9, 10, 12, 13, 14) */}
+                      {(() => {
+                        const tut = getTutorialForWeek(week.weekNumber);
+                        if (!tut) return null;
+                        const tutNum = tut.id.replace('tutorial-', '');
+                        const amvsCode = tut.amvsTopic.split(':')[0].trim();
+
+                        return (
+                          <div className="space-y-3 bg-white p-4 sm:p-5 rounded-2xl border border-rose-200/90 shadow-2xs">
+                            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-slate-100">
+                              <div className="flex items-center gap-2">
+                                <span className="bg-[#C8102E] text-white text-[10px] font-bold px-2 py-0.5 rounded tracking-wider">
+                                  OFFICIAL TUTORIAL
+                                </span>
+                                <h4 className="text-xs sm:text-sm font-bold text-slate-900">
+                                  Tutorial {tutNum} ({amvsCode}): step-by-step guide
+                                </h4>
                               </div>
-                            ))}
+                              <div className="flex items-center gap-3">
+                                <button
+                                  type="button"
+                                  onClick={() => onOpenPdf(tut.pdfPath, tut.title)}
+                                  className="text-xs font-semibold text-[#C8102E] hover:underline flex items-center gap-1 cursor-pointer"
+                                >
+                                  <FileText className="w-3.5 h-3.5" /> Open Tutorial PDF
+                                </button>
+                                <a
+                                  href={`#${tut.id}`}
+                                  className="text-xs text-slate-500 hover:text-slate-800 underline font-medium"
+                                >
+                                  Jump to Tutorial {tutNum} ↓
+                                </a>
+                              </div>
+                            </div>
+
+                            <div className="space-y-3 pt-1">
+                              {tut.questions.map((q, qIdx) => {
+                                const qKey = `w${week.weekNumber}-${tut.id}-${qIdx}`;
+                                const isAnsVisible = !!revealedWeekAnswers[qKey];
+
+                                return (
+                                  <div
+                                    key={q.questionNumber}
+                                    className="bg-slate-50/70 p-3.5 rounded-xl border border-slate-200/80 space-y-2 text-xs"
+                                  >
+                                    <div className="flex items-start justify-between gap-2">
+                                      <span className="font-bold text-slate-900 font-mono text-[11px] bg-rose-50 text-rose-700 px-2 py-0.5 rounded border border-rose-200/60">
+                                        {q.questionNumber}
+                                      </span>
+                                    </div>
+                                    <p className="text-slate-800 font-semibold leading-relaxed">
+                                      {q.prompt}
+                                    </p>
+
+                                    {/* Numbered Step-by-Step Working */}
+                                    <div className="bg-slate-900 text-slate-100 p-3.5 rounded-xl font-mono text-[11px] leading-relaxed space-y-1.5 overflow-x-auto">
+                                      <div className="text-slate-400 text-[10px] uppercase font-bold tracking-wider">
+                                        Numbered Step-by-Step Working:
+                                      </div>
+                                      <div className="space-y-1.5 pt-1">
+                                        {q.steps.map((st, stIdx) => (
+                                          <div key={stIdx} className="flex items-start gap-2 text-slate-200">
+                                            <span className="text-rose-400 font-bold shrink-0">{stIdx + 1}.</span>
+                                            <span>{st.replace(/^\d+\.\s*/, '')}</span>
+                                          </div>
+                                        ))}
+                                      </div>
+                                    </div>
+
+                                    {/* Answer Button / Box */}
+                                    <div className="pt-1">
+                                      {!isAnsVisible ? (
+                                        <button
+                                          type="button"
+                                          onClick={() => toggleWeekAnswer(qKey)}
+                                          className="inline-flex items-center gap-1.5 bg-white hover:bg-rose-50 text-[#C8102E] border border-rose-200 px-3 py-1.5 rounded-lg text-xs font-bold transition shadow-2xs cursor-pointer"
+                                        >
+                                          <Eye className="w-3.5 h-3.5" /> Show answer
+                                        </button>
+                                      ) : (
+                                        <div className="bg-emerald-50 border border-emerald-300 rounded-xl p-3 text-emerald-950 space-y-1">
+                                          <div className="flex items-center justify-between">
+                                            <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-800">
+                                              Final Answer:
+                                            </span>
+                                            <button
+                                              type="button"
+                                              onClick={() => toggleWeekAnswer(qKey)}
+                                              className="text-[10px] font-semibold text-emerald-700 hover:text-emerald-900 flex items-center gap-1 cursor-pointer"
+                                            >
+                                              <EyeOff className="w-3 h-3" /> Hide answer
+                                            </button>
+                                          </div>
+                                          <p className="text-xs font-semibold leading-relaxed font-sans text-emerald-900">
+                                            {q.finalAnswer}
+                                          </p>
+                                        </div>
+                                      )}
+                                    </div>
+                                  </div>
+                                );
+                              })}
+                            </div>
                           </div>
-                        </div>
-                      )}
+                        );
+                      })()}
 
                       {/* Module Resources (Lecture PDF, Tutorial PDF, Solutions) */}
                       {week.resources.length > 0 && (
@@ -440,6 +528,11 @@ export const HomePagePoster: React.FC<HomePagePosterProps> = ({
               );
             })}
           </div>
+        </section>
+
+        {/* Official Tutorials Section (Tutorials 1–4 = AMVS 1–4) */}
+        <section id="tutorials" className="pt-2">
+          <TutorialsSection onOpenPdf={onOpenPdf} />
         </section>
 
         {/* Course Standards & Grading Criteria */}
