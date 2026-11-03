@@ -1,3 +1,4 @@
+// PDF paths use import.meta.env.BASE_URL so they work under /ACMV-APP/ on GitHub Pages.
 import React, { useState, useMemo } from 'react';
 import { PDF_CATALOGUE } from '../data/courseData';
 import { FileText, Download, ExternalLink, Search, Eye } from 'lucide-react';
@@ -74,6 +75,9 @@ export const PdfLibrarySection: React.FC<PdfLibrarySectionProps> = ({ onOpenPdf 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {filteredPdfs.map((pdf, idx) => {
           const fullPath = `/assets/aistudio/${pdf.fileName}`;
+          const resolvedPath = /^https?:\/\//.test(fullPath)
+            ? fullPath
+            : `${import.meta.env.BASE_URL}${fullPath.replace(/^\//, '')}`;
 
           return (
             <div
@@ -104,7 +108,7 @@ export const PdfLibrarySection: React.FC<PdfLibrarySectionProps> = ({ onOpenPdf 
                   <span>View In-App</span>
                 </button>
                 <a
-                  href={fullPath}
+                  href={resolvedPath}
                   download={pdf.fileName}
                   className="flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white border border-slate-200 dark:border-slate-700 rounded-lg transition-colors whitespace-nowrap"
                 >

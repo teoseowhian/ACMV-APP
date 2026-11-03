@@ -1,3 +1,4 @@
+// PDF paths use import.meta.env.BASE_URL so they work under /ACMV-APP/ on GitHub Pages.
 import React from 'react';
 import { X, Download, ExternalLink } from 'lucide-react';
 
@@ -10,6 +11,9 @@ export const PdfViewerModal: React.FC<PdfViewerModalProps> = ({ pdfPath, onClose
   if (!pdfPath) return null;
 
   const fileName = pdfPath.split('/').pop() || 'document.pdf';
+  const resolvedPath = /^https?:\/\//.test(pdfPath)
+    ? pdfPath
+    : `${import.meta.env.BASE_URL}${pdfPath.replace(/^\//, '')}`;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-xs">
@@ -24,7 +28,7 @@ export const PdfViewerModal: React.FC<PdfViewerModalProps> = ({ pdfPath, onClose
 
           <div className="flex items-center gap-2">
             <a
-              href={pdfPath}
+              href={resolvedPath}
               download={fileName}
               className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg transition-colors"
             >
@@ -32,7 +36,7 @@ export const PdfViewerModal: React.FC<PdfViewerModalProps> = ({ pdfPath, onClose
               <span>Download</span>
             </a>
             <a
-              href={pdfPath}
+              href={resolvedPath}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-white bg-sky-600 hover:bg-sky-500 rounded-lg transition-colors"
@@ -52,7 +56,7 @@ export const PdfViewerModal: React.FC<PdfViewerModalProps> = ({ pdfPath, onClose
         {/* PDF Frame */}
         <div className="flex-1 w-full bg-slate-100 dark:bg-slate-950">
           <iframe
-            src={pdfPath}
+            src={resolvedPath}
             title={fileName}
             className="w-full h-full border-none"
           />
