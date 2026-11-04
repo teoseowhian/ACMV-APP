@@ -39,12 +39,12 @@ export const HomePagePoster: React.FC<HomePagePosterProps> = ({
   onOpenPdf,
   onOpenAiTutor,
 }) => {
-  // Week 3 is open by default since today (Tue 3 Nov 2026) leads into Week 3 (Thu 5 Nov 2026)
+  // Week 3 is open by default since today (Wed 4 Nov 2026) leads into Week 3 (Thu 5 Nov 2026)
   const [expandedWeek, setExpandedWeek] = useState<number | null>(3);
   // Track hidden/revealed answers in week cards: key = `w${weekNum}-${tutId}-${qIdx}`
   const [revealedWeekAnswers, setRevealedWeekAnswers] = useState<Record<string, boolean>>({});
 
-  // Current upcoming lesson for Oct26 semester as of today (Tue 3 Nov 2026) is Week 3
+  // Current upcoming lesson for Oct26 semester as of today (Wed 4 Nov 2026) is Week 3
   const currentWeek: WeekData = WEEKS_DATA.find((w) => w.weekNumber === 3) || WEEKS_DATA[2];
 
   const toggleExpand = (weekNum: number) => {
@@ -142,7 +142,7 @@ export const HomePagePoster: React.FC<HomePagePosterProps> = ({
             </a>
 
             <button
-              onClick={() => onOpenAiTutor('Envelope Thermal Performance & ETTV')}
+              onClick={() => onOpenAiTutor('Duct Systems & Sizing')}
               className="bg-slate-900 hover:bg-slate-800 text-white px-4 py-2.5 rounded-xl font-semibold text-sm flex items-center gap-2 transition cursor-pointer"
             >
               <Sparkles className="w-4 h-4 text-amber-400" /> Ask AI Tutor
@@ -195,7 +195,7 @@ export const HomePagePoster: React.FC<HomePagePosterProps> = ({
           </div>
         </section>
 
-        {/* Current Status Banner (Today: Tue 3 Nov 2026 -> Next lesson: Week 3 Thu 5 Nov 2026) */}
+        {/* Current Status Banner (Today: Wed 4 Nov 2026 -> Next lesson: Week 3 Thu 5 Nov 2026) */}
         <section className="bg-gradient-to-r from-rose-900 via-rose-950 to-slate-950 text-white rounded-2xl p-5 sm:p-6 shadow-md flex flex-col sm:flex-row sm:items-center justify-between gap-4 border border-rose-800/40">
           <div className="space-y-1.5">
             <div className="flex items-center gap-2">
@@ -204,14 +204,14 @@ export const HomePagePoster: React.FC<HomePagePosterProps> = ({
                 CURRENT STATUS · NEXT UPCOMING LESSON
               </span>
               <span className="text-[11px] font-mono bg-white/10 px-2 py-0.5 rounded text-slate-300">
-                Today: Tue 3 Nov 2026
+                Today: Wed 4 Nov 2026
               </span>
             </div>
             <div className="text-lg sm:text-2xl font-black text-white">
-              Week {currentWeek.weekNumber} · {currentWeek.title}
+              Week {currentWeek.weekNumber} · {currentWeek.title} · Thu 5 Nov 2026 · {currentWeek.venue}
             </div>
             <div className="text-xs text-rose-200/90 flex flex-wrap items-center gap-3">
-              <span className="font-semibold text-white">{currentWeek.dateStr}</span>
+              <span className="font-semibold text-white">Thu 5 Nov 2026</span>
               <span>•</span>
               <span className="bg-blue-900/60 text-blue-200 px-2 py-0.5 rounded border border-blue-700/60 font-mono">
                 {currentWeek.venue}
@@ -227,7 +227,7 @@ export const HomePagePoster: React.FC<HomePagePosterProps> = ({
             onClick={() => onOpenLab(currentWeek.labTabId)}
             className="self-start sm:self-center bg-white hover:bg-rose-50 text-[#C8102E] px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-2 shadow-sm transition whitespace-nowrap cursor-pointer"
           >
-            Launch This Week's Lab (ETTV / U-Value) <ArrowRight className="w-4 h-4" />
+            Launch This Week's Lab (Duct Sizing) <ArrowRight className="w-4 h-4" />
           </button>
         </section>
 
@@ -381,7 +381,7 @@ export const HomePagePoster: React.FC<HomePagePosterProps> = ({
                         </div>
                       )}
 
-                      {/* Tutorial n (AMVS n): step-by-step guide (Only for Weeks 1, 5, 9, 10, 12, 13, 14) */}
+                      {/* Tutorial n (AMVS n): step-by-step guide (Only for Weeks 1, 3, 4, 5, 6, 8) */}
                       {(() => {
                         const tut = getTutorialForWeek(week.weekNumber);
                         if (!tut) return null;

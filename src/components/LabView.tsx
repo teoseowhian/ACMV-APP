@@ -18,6 +18,7 @@ import { SimPipeSizing } from './simulators/SimPipeSizing';
 import { SimEttvUValue } from './simulators/SimEttvUValue';
 import { SimCoolingLoad } from './simulators/SimCoolingLoad';
 import { SimPsychrometrics } from './simulators/SimPsychrometrics';
+import { SimDesignConditions } from './simulators/SimDesignConditions';
 
 // Advanced tools
 import { DuctSizingWorksheet } from './DuctSizingWorksheet';
@@ -28,6 +29,7 @@ import { EttvCoolingLoadCalculator } from './EttvCoolingLoadCalculator';
 export type LabTabId =
   | 'refrigeration'
   | 'ac-systems'
+  | 'design-conditions'
   | 'ducts'
   | 'chiller'
   | 'pipes'
@@ -47,21 +49,21 @@ interface LabMeta {
 const LAB_TABS: LabMeta[] = [
   {
     id: 'refrigeration',
-    label: 'L1 Refrigeration',
+    label: 'L1 Refrigeration & Systems',
     lesson: 'Lessons 1 & 2',
-    code: 'Thermodynamic Vapour Compression Cycle',
-    goal: 'Examine pressure-enthalpy state points, refrigerant mass flow, compressor power kW, and COP.',
+    code: 'Vapour Compression & AC Equipment',
+    goal: 'Examine pressure-enthalpy state points, compressor power kW, COP, and select air-conditioning topologies (DX vs Chilled Water).',
   },
   {
-    id: 'ac-systems',
-    label: 'L2 AC Systems',
-    lesson: 'Lesson 2 Equipment',
-    code: 'SS 553 / Equipment Selection',
-    goal: 'Select the optimal air-conditioning topology based on cooling tonnage, building height, and zoning.',
+    id: 'design-conditions',
+    label: 'L2 Design Conditions',
+    lesson: 'Lesson 9 Design',
+    code: 'Singapore SS 553:2016 Standards',
+    goal: 'Evaluate indoor comfort targets (23–25°C, RH ≤65%), air velocity, positive room pressurization (+10 to +25 Pa), and outdoor air ventilation rates.',
   },
   {
     id: 'ducts',
-    label: 'L3 Ducts',
+    label: 'L3 & 4 Ducts',
     lesson: 'Lessons 3 & 4',
     code: 'Equal Friction Method (0.8–1.0 Pa/m)',
     goal: 'Size circular and rectangular ducts using Huebscher’s formula while keeping air velocity ≤ 7.5 m/s and noise under NC 35.',
@@ -69,13 +71,13 @@ const LAB_TABS: LabMeta[] = [
   {
     id: 'chiller',
     label: 'L5 Chiller',
-    lesson: 'Lesson 5 Chiller Plants',
+    lesson: 'Lesson 5 Chiller Practical',
     code: 'BCA Green Mark (≤ 0.58 kW/RT)',
     goal: 'Calculate chiller cooling capacity in RT, compressor kW/RT, and verify Green Mark Platinum efficiency compliance.',
   },
   {
     id: 'pipes',
-    label: 'L6 Pipes',
+    label: 'L6 & 8 Pipes',
     lesson: 'Lesson 6 Pipe Sizing',
     code: 'Schedule 40 Steel & Le/D Method',
     goal: 'Determine pipe diameter from water flow rate, calculate equivalent length of fittings, and compute total pump head in metres.',
@@ -96,7 +98,7 @@ const LAB_TABS: LabMeta[] = [
   },
   {
     id: 'psychrometrics',
-    label: 'L13 Psychrometrics',
+    label: 'L13 & 14 Psychrometrics',
     lesson: 'Lessons 13 & 14',
     code: 'Adiabatic Air Mixing & Coil ADP',
     goal: 'Plot dry bulb and humidity ratio, determine adiabatic mixed air condition (M), and calculate cooling coil sensible & latent loads.',
@@ -124,6 +126,7 @@ export const LabView: React.FC<LabViewProps> = ({
   onOpenPdf,
 }) => {
   const [activeTab, setActiveTab] = useState<LabTabId>(initialLabId);
+  const [refrigSubMode, setRefrigSubMode] = useState<'cycle' | 'picker'>('cycle');
   const [activeAdvancedSubTab, setActiveAdvancedSubTab] = useState<'duct' | 'pipe' | 'chiller' | 'ettv'>('duct');
 
   // Quiz state for current active tab
@@ -231,8 +234,30 @@ export const LabView: React.FC<LabViewProps> = ({
 
         {/* Selected Simulator */}
         <div className="space-y-6">
-          {activeTab === 'refrigeration' && <SimRefrigerationCycle />}
-          {activeTab === 'ac-systems' && <SimAcSystemPicker />}
+          {(activeTab === 'refrigeration' || activeTab === 'ac-systems') && (
+            <div className="space-y-4">
+              <div className="flex gap-2 p-1 bg-slate-900 rounded-xl border border-slate-800 w-fit">
+                <button
+                  onClick={() => setRefrigSubMode('cycle')}
+                  className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition cursor-pointer ${
+                    refrigSubMode === 'cycle' ? 'bg-rose-600 text-white shadow-sm' : 'text-slate-400 hover:text-white'
+                  }`}
+                >
+                  Refrigeration Cycle (p-h Diagram)
+                </button>
+                <button
+                  onClick={() => setRefrigSubMode('picker')}
+                  className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition cursor-pointer ${
+                    refrigSubMode === 'picker' ? 'bg-rose-600 text-white shadow-sm' : 'text-slate-400 hover:text-white'
+                  }`}
+                >
+                  AC System Picker & Equipment
+                </button>
+              </div>
+              {refrigSubMode === 'cycle' ? <SimRefrigerationCycle /> : <SimAcSystemPicker />}
+            </div>
+          )}
+          {activeTab === 'design-conditions' && <SimDesignConditions />}
           {activeTab === 'ducts' && <SimDuctSizing />}
           {activeTab === 'chiller' && <SimChillerPerformance />}
           {activeTab === 'pipes' && <SimPipeSizing />}

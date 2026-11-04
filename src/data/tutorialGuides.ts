@@ -133,8 +133,8 @@ export const TUTORIAL_GUIDES: TutorialGuide[] = [
     title: 'Tutorial 2 (AMVS 2): Air-conditioning Equipment & Energy Audit',
     amvsTopic: 'AMVS 2: Air-conditioning Equipment',
     pdfPath: '/assets/aistudio/Tutorial_2_Apr_26_1b03e097.pdf',
-    weeksCovered: [5, 14],
-    weeksCoveredLabel: 'Weeks 5 & 14',
+    weeksCovered: [5],
+    weeksCoveredLabel: 'Week 5',
     questions: [
       {
         questionNumber: 'Q1 & Q2. Compressors by construction and compression method',
@@ -256,8 +256,8 @@ export const TUTORIAL_GUIDES: TutorialGuide[] = [
     title: 'Tutorial 3 (AMVS 3): Duct Systems & Sizing',
     amvsTopic: 'AMVS 3: Duct Systems & Sizing',
     pdfPath: '/assets/aistudio/Tutorial_3_Apr_26__1__57c7fbf4.pdf',
-    weeksCovered: [9, 10],
-    weeksCoveredLabel: 'Weeks 9 & 10',
+    weeksCovered: [3, 4],
+    weeksCoveredLabel: 'Weeks 3 & 4',
     questions: [
       {
         questionNumber: 'Q1 to Q3. Duct insulation, throw & drop, and design objectives',
@@ -313,8 +313,8 @@ export const TUTORIAL_GUIDES: TutorialGuide[] = [
     title: 'Tutorial 4 (AMVS 4): Pipe Systems & Sizing',
     amvsTopic: 'AMVS 4: Pipe Systems & Sizing',
     pdfPath: '/assets/aistudio/Tutorial_4_Apr_26_79ce2872.pdf',
-    weeksCovered: [12, 13],
-    weeksCoveredLabel: 'Weeks 12 & 13',
+    weeksCovered: [6, 8],
+    weeksCoveredLabel: 'Weeks 6 & 8',
     questions: [
       {
         questionNumber: 'Q1. Chilled water expansion tank functions',
@@ -377,23 +377,24 @@ export const TUTORIAL_GUIDES: TutorialGuide[] = [
  * Returns the official tutorial guide assigned to the given week number,
  * or undefined if the week does not have an official tutorial.
  *
- * Mappings:
+ * Mappings for Rev 6:
  * - Week 1: Tutorial 1 (AMVS 1)
- * - Week 5, 14: Tutorial 2 (AMVS 2)
- * - Week 9, 10: Tutorial 3 (AMVS 3)
- * - Week 12, 13: Tutorial 4 (AMVS 4)
+ * - Week 5: Tutorial 2 (AMVS 2)
+ * - Week 3, 4: Tutorial 3 (AMVS 3)
+ * - Week 6, 8: Tutorial 4 (AMVS 4)
+ * - All other weeks: undefined
  */
 export function getTutorialForWeek(weekNumber: number): TutorialGuide | undefined {
   if (weekNumber === 1) {
     return TUTORIAL_GUIDES.find((t) => t.id === 'tutorial-1');
   }
-  if (weekNumber === 5 || weekNumber === 14) {
+  if (weekNumber === 5) {
     return TUTORIAL_GUIDES.find((t) => t.id === 'tutorial-2');
   }
-  if (weekNumber === 9 || weekNumber === 10) {
+  if (weekNumber === 3 || weekNumber === 4) {
     return TUTORIAL_GUIDES.find((t) => t.id === 'tutorial-3');
   }
-  if (weekNumber === 12 || weekNumber === 13) {
+  if (weekNumber === 6 || weekNumber === 8) {
     return TUTORIAL_GUIDES.find((t) => t.id === 'tutorial-4');
   }
   return undefined;

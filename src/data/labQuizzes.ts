@@ -310,4 +310,42 @@ export const LAB_QUIZZES: Record<string, LabQuizQuestion[]> = {
       explanation: 'Because building zones peak at different hours (East morning vs West afternoon), VAV systems size fans based on the simultaneous block load, reducing fan sizes by ~30% and annual kWh by up to 50%.',
     },
   ],
+
+  'design-conditions': [
+    {
+      id: 1,
+      question: 'Under Singapore Standard SS 553:2016, what are the recommended indoor design dry-bulb temperature and relative humidity criteria for comfort?',
+      options: ['20°C to 22°C · RH ≤ 40%', '23°C to 25°C · RH ≤ 65%', '26°C to 28°C · RH ≤ 80%', '18°C to 20°C · RH ≤ 50%'],
+      correctIndex: 1,
+      explanation: 'SS 553:2016 Clause 5.1 specifies an operative temperature of 23°C to 25°C and relative humidity not exceeding 65% for air-conditioned spaces.',
+    },
+    {
+      id: 2,
+      question: 'What are the official Singapore outdoor design conditions coincident with peak solar heat gain?',
+      options: ['30.0°C DB / 25.0°C WB', '33.5°C DB / 27.5°C WB', '36.0°C DB / 30.0°C WB', '28.0°C DB / 24.0°C WB'],
+      correctIndex: 1,
+      explanation: 'Singapore design standards prescribe 33.5°C Dry Bulb and 27.5°C Wet Bulb as the coincident peak outdoor design condition.',
+    },
+    {
+      id: 3,
+      question: 'What is the minimum outdoor fresh air supply rate for general offices specified under SS 553:2016 Table 4.10?',
+      options: ['0.1 L/s/m²', '5.5 L/s per person (or 0.6 L/s per m²)', '15.0 L/s per person', '25.0 L/s per person'],
+      correctIndex: 1,
+      explanation: 'SS 553 Table 4.10 sets 5.5 L/s per person (or 0.6 L/s/m² floor area) as the statutory minimum outdoor air rate to dilute carbon dioxide and indoor bio-effluents.',
+    },
+    {
+      id: 4,
+      question: 'Why should air-conditioned commercial spaces maintain a positive differential pressure of +10 to +25 Pa?',
+      options: ['To blow out office paper waste', 'To prevent unconditioned hot, humid outdoor air and airborne dust from infiltrating through door cracks and facade joints', 'To increase the cooling capacity of DX coils', 'To reduce lighting power density'],
+      correctIndex: 1,
+      explanation: 'Positive pressurization forces exfiltration outward, stopping humid 33°C outdoor air from leaking into the building and causing mold growth or ceiling condensation.',
+    },
+    {
+      id: 5,
+      question: 'Under SS 553, what is the maximum recommended air velocity within the occupied zone (up to 1.8 m above floor)?',
+      options: ['0.05 m/s', '0.30 m/s', '1.00 m/s', '2.50 m/s'],
+      correctIndex: 1,
+      explanation: 'Air velocities exceeding 0.30 m/s cause draft complaints and paper flapping, while velocities below 0.08 m/s lead to thermal stagnation and stuffiness.',
+    },
+  ],
 };
