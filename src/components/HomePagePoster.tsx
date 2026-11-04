@@ -337,6 +337,18 @@ export const HomePagePoster: React.FC<HomePagePosterProps> = ({
                         </button>
                       )}
 
+                      {week.secondaryLabTabId && (
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            onOpenLab(week.secondaryLabTabId);
+                          }}
+                          className="hidden md:flex bg-rose-50 hover:bg-rose-100 text-[#C8102E] border border-rose-200 px-3 py-1.5 rounded-lg text-xs font-semibold items-center gap-1.5 transition cursor-pointer"
+                        >
+                          <Play className="w-3.5 h-3.5 fill-current" /> {week.secondaryLabLabel || '2nd Lab'}
+                        </button>
+                      )}
+
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
@@ -352,6 +364,33 @@ export const HomePagePoster: React.FC<HomePagePosterProps> = ({
                   {/* Expanded in-place section */}
                   {isExpanded && (
                     <div className="px-5 pb-6 pt-2 border-t border-slate-100 bg-slate-50/50 space-y-6">
+                      {/* Lab Quick Launch Strip */}
+                      {(week.labTabId || week.secondaryLabTabId) && (
+                        <div className="flex flex-wrap items-center gap-2">
+                          <span className="text-xs font-bold uppercase tracking-wider text-slate-700">
+                            Interactive Labs this week:
+                          </span>
+                          {week.labTabId && (
+                            <button
+                              type="button"
+                              onClick={() => onOpenLab(week.labTabId)}
+                              className="bg-slate-900 hover:bg-[#C8102E] text-white px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 transition shadow-2xs cursor-pointer"
+                            >
+                              <Play className="w-3 h-3 fill-current" /> Launch Lab
+                            </button>
+                          )}
+                          {week.secondaryLabTabId && (
+                            <button
+                              type="button"
+                              onClick={() => onOpenLab(week.secondaryLabTabId)}
+                              className="bg-rose-50 hover:bg-rose-100 text-[#C8102E] border border-rose-200 px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 transition shadow-2xs cursor-pointer"
+                            >
+                              <Play className="w-3 h-3 fill-current" /> Launch {week.secondaryLabLabel}
+                            </button>
+                          )}
+                        </div>
+                      )}
+
                       {/* Key Formula Chip */}
                       {week.keyFormulaOrCode && (
                         <div className="flex flex-wrap items-center gap-2">

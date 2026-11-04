@@ -133,8 +133,8 @@ export const TUTORIAL_GUIDES: TutorialGuide[] = [
     title: 'Tutorial 2 (AMVS 2): Air-conditioning Equipment & Energy Audit',
     amvsTopic: 'AMVS 2: Air-conditioning Equipment',
     pdfPath: '/assets/aistudio/Tutorial_2_Apr_26_1b03e097.pdf',
-    weeksCovered: [5],
-    weeksCoveredLabel: 'Week 5',
+    weeksCovered: [2],
+    weeksCoveredLabel: 'Week 2',
     questions: [
       {
         questionNumber: 'Q1 & Q2. Compressors by construction and compression method',
@@ -379,7 +379,7 @@ export const TUTORIAL_GUIDES: TutorialGuide[] = [
  *
  * Mappings for Rev 6:
  * - Week 1: Tutorial 1 (AMVS 1)
- * - Week 5: Tutorial 2 (AMVS 2)
+ * - Week 2: Tutorial 2 (AMVS 2)
  * - Week 3, 4: Tutorial 3 (AMVS 3)
  * - Week 6, 8: Tutorial 4 (AMVS 4)
  * - All other weeks: undefined
@@ -388,7 +388,7 @@ export function getTutorialForWeek(weekNumber: number): TutorialGuide | undefine
   if (weekNumber === 1) {
     return TUTORIAL_GUIDES.find((t) => t.id === 'tutorial-1');
   }
-  if (weekNumber === 5) {
+  if (weekNumber === 2) {
     return TUTORIAL_GUIDES.find((t) => t.id === 'tutorial-2');
   }
   if (weekNumber === 3 || weekNumber === 4) {
